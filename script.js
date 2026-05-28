@@ -1,109 +1,137 @@
-// script.js
+let scheduleData = {};
 
-// 現在時刻表示
+let selectedDay2 = "A";
+let selectedDay3 = "α";
 
-function updateClock(){
+fetch("data/schedule.json")
+  .then(res => res.json())
+  .then(data => {
+    scheduleData = data;
 
-  const now = new Date();
+    renderTimeline();
+    updateLiveSchedule();
 
-  const text =
-    now.getFullYear() + "/" +
-    (now.getMonth()+1) + "/" +
-    now.getDate() + " " +
-    now.getHours().toString().padStart(2,"0") + ":" +
-    now.getMinutes().toString().padStart(2,"0");
+    setInterval(updateLiveSchedule, 1000);
+  });
 
-  document.getElementById("current-time").textContent = text;
-}
+/* ボタン切り替え */
+document.querySelectorAll(".course-btn").forEach(btn => {
 
-setInterval(updateClock,1000);
+  btn.addEventListener("click", () => {
 
-updateClock();
+    const day = btn.dataset.day;
+    const course = btn.dataset.course;
 
+    document
+      .querySelectorAll(`.course-btn[data-day="${day}"]`)
+      .forEach(b => b.classList.remove("active"));
 
-// コース保存
+    btn.classList.add("active");
 
-const select = document.getElementById("course-select");
+    if(day === "2"){
+      selectedDay2 = course;
+    }else{
+      selectedDay3 = course;
+    }
 
-const savedCourse = localStorage.getItem("course");
-
-if(savedCourse){
-  select.value = savedCourse;
-}
-
-select.addEventListener("change",()=>{
-
-  localStorage.setItem(
-    "course",
-    select.value
-  );
-
-  updateSchedule();
+    renderTimeline();
+  });
 
 });
 
+/* タイムライン描画 */
+function renderTimeline(){
 
-// 仮スケジュール
+  const timeline = document.getElementById("timeline");
 
-const schedules = {
+  timeline.innerHTML = "";
 
-  A:{
-    time:"13:30",
-    title:"大沼公園着",
-    description:"カヌー体験"
-  },
+  const day2 = scheduleData.day2?.[selectedDay2] || [];
+  const day3 = scheduleData.day3?.[selectedDay3] || [];
 
-  B:{
-    time:"15:30",
-    title:"中島ハイキング",
-    description:"自由行動"
-  },
+  const merged = [
+    ...day2,
+    ...day3
+  ];
 
-  C:{
-    time:"15:15",
-    title:"ウポポイ学習",
-    description:"館内自由行動"
-  },
+  merged.forEach(item => {
 
-  alpha:{
-    time:"11:30",
-    title:"有珠山山頂",
-    description:"ロープウェイ"
-  },
+    timeline.innerHTML += `
+      <div class="timeline-item">
+        <div class="timeline-time">${item.time}</div>
+        <div class="timeline-title">${item.title}</div>
+        <div class="timeline-desc">${item.description}</div>
+      </div>
+    `;
 
-  beta:{
-    time:"08:30",
-    title:"登山開始",
-    description:"体調注意"
-  },
-
-  gamma:{
-    time:"09:15",
-    title:"三松正夫記念館",
-    description:"自由見学"
-  }
-
-};
-
-
-function updateSchedule(){
-
-  const course = select.value;
-
-  const data = schedules[course];
-
-  document.getElementById(
-    "event-time"
-  ).textContent = data.time;
-
-  document.getElementById(
-    "event-title"
-  ).textContent = data.title;
-
-  document.getElementById(
-    "event-description"
-  ).textContent = data.description;
+  });
 
 }
 
-updateSchedule();
+/* 現在予定 */
+function updateLiveSchedule(){
+
+  const now = new Date();
+
+  const currentEvent = document.getElementById("currentEvent");
+  const nextEvent = document.getElementById("nextEvent");
+  const countdown = document.getElementById("countdown");
+
+  const events = [
+    {
+      start: new Date("2026-06-01T08:00:00"),
+      end: new Date("2026-06-01T09:45:00"),
+      title:"羽田空港集合"
+    },
+    {
+      start: new Date("2026-06-02T13:30:00"),
+      end: new Date("2026-06-02T15:00:00"),
+      title:"アクティビティ"
+    },
+    {
+      start: new Date("2026-06-03T14:30:00"),
+      end: new Date("2026-06-03T17:00:00"),
+      title:"登別観光"
+    }
+  ];
+
+  let current = null;
+  let next = null;
+
+  for(let i=0;i<events.length;i++){
+
+    const ev = events[i];
+
+    if(now >= ev.start && now <= ev.end){
+      current = ev;
+      next = events[i+1];
+      break;
+    }
+
+    if(now < ev.start){
+      next = ev;
+      break;
+    }
+
+  }
+
+  currentEvent.textContent =
+    current ? current.title : "現在予定はありません";
+
+  nextEvent.textContent =
+    next ? next.title : "次の予定はありません";
+
+  if(next){
+
+    const diff = next.start - now;
+
+    const h = Math.floor(diff / 1000 / 60 / 60);
+    const m = Math.floor(diff / 1000 / 60) % 60;
+    const s = Math.floor(diff / 1000) % 60;
+
+    countdown.textContent =
+      `${String(h).padStart(2,"0")}:${String(m).padStart(2,"0")}:${String(s).padStart(2,"0")}`;
+
+  }
+
+}
