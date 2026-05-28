@@ -1,0 +1,344 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+
+  <meta charset="UTF-8" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
+  <title>行程 | 道南コース</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="style.css" />
+
+</head>
+
+<body class="schedule-body">
+
+  <!-- Background -->
+
+  <div class="bg-overlay"></div>
+
+  <div class="bg-glow"></div>
+
+  <div class="bg-glow second"></div>
+
+  <!-- Header -->
+
+  <header class="page-header">
+
+    <div class="mini-title">
+      SCHEDULE
+    </div>
+
+    <h1 class="page-title">
+      行程
+    </h1>
+
+    <p class="page-subtitle">
+      修学旅行の全スケジュール
+    </p>
+
+  </header>
+
+  <!-- Day Tabs -->
+
+  <div class="day-tabs">
+
+    <button
+      class="day-tab active"
+      onclick="showDay(1)"
+    >
+      1日目
+    </button>
+
+    <button
+      class="day-tab"
+      onclick="showDay(2)"
+    >
+      2日目
+    </button>
+
+    <button
+      class="day-tab"
+      onclick="showDay(3)"
+    >
+      3日目
+    </button>
+
+  </div>
+
+  <!-- Main -->
+
+  <main class="schedule-container">
+
+    <!-- Day 1 -->
+
+    <section
+      id="day1"
+      class="day-content active"
+    >
+
+      <div class="timeline-card glass">
+
+        <div class="timeline-item current">
+
+          <div class="timeline-dot"></div>
+
+          <div class="timeline-content">
+
+            <div class="timeline-time">
+              07:30
+            </div>
+
+            <div class="timeline-title">
+              学校集合
+            </div>
+
+            <div class="timeline-desc">
+              体育館前集合
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="timeline-item">
+
+          <div class="timeline-dot"></div>
+
+          <div class="timeline-content">
+
+            <div class="timeline-time">
+              08:15
+            </div>
+
+            <div class="timeline-title">
+              出発
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="timeline-item">
+
+          <div class="timeline-dot"></div>
+
+          <div class="timeline-content">
+
+            <div class="timeline-time">
+              12:20
+            </div>
+
+            <div class="timeline-title">
+              函館到着
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- Day 2 -->
+
+    <section
+      id="day2"
+      class="day-content"
+    >
+
+      <div class="timeline-card glass">
+
+        <div class="course-badge">
+          現在のコース：A（カヌー）
+        </div>
+
+        <div class="timeline-item">
+
+          <div class="timeline-dot"></div>
+
+          <div class="timeline-content">
+
+            <div class="timeline-time">
+              07:00
+            </div>
+
+            <div class="timeline-title">
+              起床
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="timeline-item current">
+
+          <div class="timeline-dot"></div>
+
+          <div class="timeline-content">
+
+            <div class="timeline-time">
+              13:30
+            </div>
+
+            <div class="timeline-title">
+              カヌー体験
+            </div>
+
+            <div class="timeline-desc">
+              大沼公園
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- Day 3 -->
+
+    <section
+      id="day3"
+      class="day-content"
+    >
+
+      <div class="timeline-card glass">
+
+        <div class="course-badge">
+          現在のコース：β（登山）
+        </div>
+
+        <div class="timeline-item">
+
+          <div class="timeline-dot"></div>
+
+          <div class="timeline-content">
+
+            <div class="timeline-time">
+              08:00
+            </div>
+
+            <div class="timeline-title">
+              登山開始
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="timeline-item">
+
+          <div class="timeline-dot"></div>
+
+          <div class="timeline-content">
+
+            <div class="timeline-time">
+              12:30
+            </div>
+
+            <div class="timeline-title">
+              昼食
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- Bottom Nav -->
+
+  <nav class="bottom-nav">
+
+    <a
+      href="index.html"
+      class="nav-item"
+    >
+      <span>🏠</span>
+      <small>ホーム</small>
+    </a>
+
+    <a
+      href="schedule.html"
+      class="nav-item active"
+    >
+      <span>🗓</span>
+      <small>行程</small>
+    </a>
+
+    <button class="nav-item">
+      <span>📢</span>
+      <small>連絡</small>
+    </button>
+
+    <button class="nav-item">
+      <span>📘</span>
+      <small>しおり</small>
+    </button>
+
+    <button class="nav-item">
+      <span>⚙</span>
+      <small>設定</small>
+    </button>
+
+  </nav>
+
+  <!-- Script -->
+
+  <script>
+
+    function showDay(day){
+
+      // タブ切り替え
+
+      document
+        .querySelectorAll(".day-tab")
+        .forEach(tab => {
+
+          tab.classList.remove("active");
+
+        });
+
+      document
+        .querySelectorAll(".day-content")
+        .forEach(content => {
+
+          content.classList.remove("active");
+
+        });
+
+      // 対象表示
+
+      document
+        .querySelectorAll(".day-tab")[day - 1]
+        .classList.add("active");
+
+      document
+        .getElementById(`day${day}`)
+        .classList.add("active");
+
+    }
+
+  </script>
+
+</body>
+</html>
