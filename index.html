@@ -1,161 +1,167 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>道南コース2026</title>
+  <title>道南コース</title>
 
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
 
   <!-- 背景 -->
-  <div class="bg-blur"></div>
+  <div class="background"></div>
 
   <!-- ヘッダー -->
-  <header class="hero">
-    <div class="overlay"></div>
+  <header>
+    <div class="logo">
+      道南コース
+    </div>
 
-    <div class="hero-content">
-      <img src="assets/images/logo.png" class="logo" alt="logo">
-
-      <h1>道南コース 2026</h1>
-      <p class="subtitle">
-        Kaisei School Trip 2026.6.1 - 2026.6.5
-      </p>
-
-      <div class="hero-buttons">
-        <a href="#schedule" class="btn-primary">行程を見る</a>
-        <a href="#pdf" class="btn-secondary">しおりPDF</a>
-      </div>
+    <div class="date-box">
+      <span id="current-time"></span>
     </div>
   </header>
 
-  <!-- お知らせ -->
-  <section class="card-section">
-    <div class="section-title">
-      <h2>お知らせ</h2>
-      <span>Announcements</span>
-    </div>
+  <!-- メイン -->
+  <main>
 
-    <div class="notice-box">
-      <div id="noticeList">
-        <div class="notice-item">
-          現在お知らせはありません。
+    <!-- ヒーロー -->
+    <section class="hero glass">
+      <h1>Kaisei School Trip 2026</h1>
+      <p>北海道・道南エリア</p>
+
+      <select id="course-select">
+        <option value="A">コースA</option>
+        <option value="B">コースB</option>
+        <option value="C">コースC</option>
+        <option value="alpha">コースα</option>
+        <option value="beta">コースβ</option>
+        <option value="gamma">コースγ</option>
+      </select>
+    </section>
+
+    <!-- 次の予定 -->
+    <section class="next-event glass">
+      <h2>次の予定</h2>
+
+      <div class="event-card">
+        <div class="event-time" id="event-time">
+          13:30
+        </div>
+
+        <div class="event-content">
+          <h3 id="event-title">
+            大沼公園着
+          </h3>
+
+          <p id="event-description">
+            カヌー体験
+          </p>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- 現在の予定 -->
-  <section class="card-section">
-    <div class="section-title">
-      <h2>現在の予定</h2>
-      <span>Live Schedule</span>
-    </div>
-
-    <div class="live-card">
-      <div class="live-now">
-        <p class="live-label">NOW</p>
-        <h3 id="currentEvent">読み込み中...</h3>
-      </div>
-
-      <div class="live-next">
-        <p class="live-label">NEXT</p>
-        <h3 id="nextEvent">読み込み中...</h3>
-      </div>
-
-      <div class="countdown">
-        <p>次の予定まで</p>
-        <h1 id="countdown">--:--:--</h1>
-      </div>
-    </div>
-  </section>
-
-  <!-- コース選択 -->
-  <section class="card-section" id="schedule">
-
-    <div class="section-title">
-      <h2>コース選択</h2>
-      <span>Select Course</span>
-    </div>
-
-    <div class="course-selector">
-
-      <!-- 2日目 -->
-      <div class="selector-group">
-        <h3>2日目コース</h3>
-
-        <div class="button-group">
-          <button class="course-btn active" data-day="2" data-course="A">コースA</button>
-          <button class="course-btn" data-day="2" data-course="B">コースB</button>
-          <button class="course-btn" data-day="2" data-course="C">コースC</button>
-        </div>
-      </div>
-
-      <!-- 3日目 -->
-      <div class="selector-group">
-        <h3>3日目コース</h3>
-
-        <div class="button-group">
-          <button class="course-btn active" data-day="3" data-course="α">コースα</button>
-          <button class="course-btn" data-day="3" data-course="β">コースβ</button>
-          <button class="course-btn" data-day="3" data-course="γ">コースγ</button>
-        </div>
-      </div>
-
-    </div>
+    </section>
 
     <!-- タイムライン -->
-    <div class="timeline-container">
-      <div id="timeline"></div>
-    </div>
-  </section>
+    <section class="timeline glass">
+      <h2>今日のスケジュール</h2>
 
-  <!-- 地図 -->
-  <section class="card-section">
+      <div class="timeline-item active">
+        <div class="circle"></div>
+        <div class="timeline-content">
+          <h3>08:00 羽田集合</h3>
+          <p>第2ターミナル B1階</p>
+        </div>
+      </div>
 
-    <div class="section-title">
-      <h2>移動経路</h2>
-      <span>Trip Route</span>
-    </div>
+      <div class="timeline-item">
+        <div class="circle"></div>
+        <div class="timeline-content">
+          <h3>09:45 出発</h3>
+          <p>ANA553便</p>
+        </div>
+      </div>
 
-    <div class="map-wrapper">
-      <img src="assets/images/map.png" alt="map">
-    </div>
+      <div class="timeline-item">
+        <div class="circle"></div>
+        <div class="timeline-content">
+          <h3>11:05 函館到着</h3>
+          <p>函館空港</p>
+        </div>
+      </div>
+    </section>
 
-  </section>
+    <!-- マップ -->
+    <section class="map-section glass">
+      <h2>移動マップ</h2>
 
-  <!-- PDF -->
-  <section class="card-section" id="pdf">
+      <div class="map-container">
 
-    <div class="section-title">
+        <img src="map.png" class="map-image">
+
+        <div class="marker">
+          😊
+        </div>
+
+      </div>
+    </section>
+
+    <!-- お知らせ -->
+    <section class="news glass">
+      <h2>お知らせ</h2>
+
+      <div class="news-card">
+        <span class="news-date">6/1</span>
+        <p>17:00 花びしホテル集合</p>
+      </div>
+
+      <div class="news-card">
+        <span class="news-date">6/1</span>
+        <p>搭乗前にトイレを済ませてください</p>
+      </div>
+    </section>
+
+    <!-- PDF -->
+    <section class="pdf glass">
       <h2>しおりPDF</h2>
-      <span>Travel Guide PDF</span>
-    </div>
 
-    <div class="pdf-card">
-      <iframe
-        src="assets/pdf/shiori.pdf"
-        width="100%"
-        height="700px">
-      </iframe>
-
-      <a href="assets/pdf/shiori.pdf" download class="btn-primary pdf-btn">
-        PDFをダウンロード
+      <a href="shiriori.pdf" target="_blank" class="pdf-button">
+        PDFを開く
       </a>
-    </div>
-  </section>
+    </section>
 
-  <!-- フッター -->
-  <footer>
-    <p>© 2026 Dounan Course Project</p>
-  </footer>
+  </main>
+
+  <!-- 下タブ -->
+  <nav class="bottom-nav">
+
+    <button class="nav-item active">
+      🏠
+      <span>ホーム</span>
+    </button>
+
+    <button class="nav-item">
+      🗓
+      <span>予定</span>
+    </button>
+
+    <button class="nav-item">
+      🗺
+      <span>マップ</span>
+    </button>
+
+    <button class="nav-item">
+      📄
+      <span>しおり</span>
+    </button>
+
+  </nav>
 
   <script src="script.js"></script>
-
 </body>
 </html>
