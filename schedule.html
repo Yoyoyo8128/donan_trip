@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -12,12 +11,16 @@
 
   <title>行程 | 道南コース</title>
 
+  <!-- Fonts -->
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
 
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap"
     rel="stylesheet"
   />
+
+  <!-- CSS -->
 
   <link rel="stylesheet" href="style.css" />
 
@@ -46,7 +49,7 @@
     </h1>
 
     <p class="page-subtitle">
-      修学旅行の全スケジュール
+      修学旅行のスケジュール
     </p>
 
   </header>
@@ -77,10 +80,10 @@
     </button>
 
     <button
-        class="day-tab"
-        onclick="showDay(4)"
+      class="day-tab"
+      onclick="showDay(4)"
     >
-    4日目
+      4日目
     </button>
 
   </div>
@@ -89,7 +92,7 @@
 
   <main class="schedule-container">
 
-    <!-- Day 1 -->
+    <!-- DAY 1 -->
 
     <section
       id="day1"
@@ -98,69 +101,13 @@
 
       <div class="timeline-card glass">
 
-        <div class="timeline-item current">
-
-          <div class="timeline-dot"></div>
-
-          <div class="timeline-content">
-
-            <div class="timeline-time">
-              07:30
-            </div>
-
-            <div class="timeline-title">
-              学校集合
-            </div>
-
-            <div class="timeline-desc">
-              体育館前集合
-            </div>
-
-          </div>
-
-        </div>
-
-        <div class="timeline-item">
-
-          <div class="timeline-dot"></div>
-
-          <div class="timeline-content">
-
-            <div class="timeline-time">
-              08:15
-            </div>
-
-            <div class="timeline-title">
-              出発
-            </div>
-
-          </div>
-
-        </div>
-
-        <div class="timeline-item">
-
-          <div class="timeline-dot"></div>
-
-          <div class="timeline-content">
-
-            <div class="timeline-time">
-              12:20
-            </div>
-
-            <div class="timeline-title">
-              函館到着
-            </div>
-
-          </div>
-
-        </div>
+        <div id="day1-timeline"></div>
 
       </div>
 
     </section>
 
-    <!-- Day 2 -->
+    <!-- DAY 2 -->
 
     <section
       id="day2"
@@ -169,55 +116,20 @@
 
       <div class="timeline-card glass">
 
-        <div class="course-badge">
-          現在のコース：A（カヌー）
+        <div
+          id="day2-course-badge"
+          class="course-badge"
+        >
+          現在のコース：A
         </div>
 
-        <div class="timeline-item">
-
-          <div class="timeline-dot"></div>
-
-          <div class="timeline-content">
-
-            <div class="timeline-time">
-              07:00
-            </div>
-
-            <div class="timeline-title">
-              起床
-            </div>
-
-          </div>
-
-        </div>
-
-        <div class="timeline-item current">
-
-          <div class="timeline-dot"></div>
-
-          <div class="timeline-content">
-
-            <div class="timeline-time">
-              13:30
-            </div>
-
-            <div class="timeline-title">
-              カヌー体験
-            </div>
-
-            <div class="timeline-desc">
-              大沼公園
-            </div>
-
-          </div>
-
-        </div>
+        <div id="day2-timeline"></div>
 
       </div>
 
     </section>
 
-    <!-- Day 3 -->
+    <!-- DAY 3 -->
 
     <section
       id="day3"
@@ -226,71 +138,40 @@
 
       <div class="timeline-card glass">
 
-        <div class="course-badge">
-          現在のコース：β（登山）
+        <div
+          id="day3-course-badge"
+          class="course-badge"
+        >
+          現在のコース：α
         </div>
 
-        <div class="timeline-item">
-
-          <div class="timeline-dot"></div>
-
-          <div class="timeline-content">
-
-            <div class="timeline-time">
-              08:00
-            </div>
-
-            <div class="timeline-title">
-              登山開始
-            </div>
-
-          </div>
-
-        </div>
-
-        <div class="timeline-item">
-
-          <div class="timeline-dot"></div>
-
-          <div class="timeline-content">
-
-            <div class="timeline-time">
-              12:30
-            </div>
-
-            <div class="timeline-title">
-              昼食
-            </div>
-
-          </div>
-
-        </div>
+        <div id="day3-timeline"></div>
 
       </div>
 
     </section>
 
-    <!-- Day 4 -->
+    <!-- DAY 4 -->
 
-<section
-  id="day4"
-  class="day-content"
->
-
-  <div class="timeline-card glass">
-
-    <div
-      id="day4-course-badge"
-      class="course-badge"
+    <section
+      id="day4"
+      class="day-content"
     >
-      現在のコース：小樽
-    </div>
 
-    <div id="day4-timeline"></div>
+      <div class="timeline-card glass">
 
-  </div>
+        <div
+          id="day4-course-badge"
+          class="course-badge"
+        >
+          現在のコース：小樽
+        </div>
 
-</section>
+        <div id="day4-timeline"></div>
+
+      </div>
+
+    </section>
 
   </main>
 
@@ -299,55 +180,61 @@
   <nav class="bottom-nav">
 
     <a
-        href="index.html"
-        class="nav-item"
+      href="index.html"
+      class="nav-item"
     >
-    <span>🏠</span>
-    <small>ホーム</small>
+      <span>🏠</span>
+      <small>ホーム</small>
     </a>
 
     <a
-        href="schedule.html"
-        class="nav-item active"
+      href="schedule.html"
+      class="nav-item active"
     >
-    <span>🗓</span>
-    <small>行程</small>
+      <span>🗓</span>
+      <small>行程</small>
     </a>
 
     <a
-        href="notice.html"
-        class="nav-item"
+      href="notice.html"
+      class="nav-item"
     >
-    <span>📢</span>
-    <small>連絡</small>
+      <span>📢</span>
+      <small>連絡</small>
     </a>
 
     <a
-        href="pdf/shiori.pdf"
-        target="_blank"
-        class="nav-item"
+      href="pdf/shiori.pdf"
+      target="_blank"
+      class="nav-item"
     >
-    <span>📘</span>
-    <small>しおり</small>
+      <span>📘</span>
+      <small>しおり</small>
     </a>
 
     <a
-        href="settings.html"
-        class="nav-item"
+      href="settings.html"
+      class="nav-item"
     >
-        <span>⚙</span>
-        <small>設定</small>
-        </button>
+      <span>⚙</span>
+      <small>設定</small>
+    </a>
 
-    </nav>
+  </nav>
+
+  <!-- data.js -->
+
+  <script src="data.js"></script>
 
   <!-- Script -->
 
   <script>
 
-    function showDay(day){
+    // =====================================
+    // タブ切替
+    // =====================================
 
-      // タブ切り替え
+    function showDay(day){
 
       document
         .querySelectorAll(".day-tab")
@@ -365,8 +252,6 @@
 
         });
 
-      // 対象表示
-
       document
         .querySelectorAll(".day-tab")[day - 1]
         .classList.add("active");
@@ -376,6 +261,140 @@
         .classList.add("active");
 
     }
+
+
+
+    // =====================================
+    // コース取得
+    // =====================================
+
+    const courseDay2 =
+      localStorage.getItem("courseDay2")
+      || "A";
+
+    const courseDay3 =
+      localStorage.getItem("courseDay3")
+      || "α";
+
+    const courseDay4 =
+      localStorage.getItem("courseDay4")
+      || "小樽";
+
+
+
+    // =====================================
+    // 工程描画
+    // =====================================
+
+    function renderTimeline(
+        targetId,
+        ...scheduleGroups
+    ){
+
+        const target =
+        document.getElementById(targetId);
+
+        if(!target){
+
+        return;
+
+        }
+
+    // 初期化
+
+    target.innerHTML = "";
+
+    // 配列合体
+
+    const mergedSchedules =
+    scheduleGroups.flat();
+
+    // 描画
+
+    mergedSchedules.forEach(item => {
+
+        const time = item[0];
+        const title = item[1];
+        const desc = item[2];
+
+        target.innerHTML += `
+
+      <div class="timeline-item">
+
+        <div class="timeline-dot"></div>
+
+        <div class="timeline-content">
+
+          <div class="timeline-time">
+            ${time}
+          </div>
+
+          <div class="timeline-title">
+            ${title}
+          </div>
+
+          <div class="timeline-desc">
+            ${desc}
+          </div>
+
+        </div>
+
+      </div>
+
+    `;
+
+        });
+
+    }
+
+
+
+    // =====================================
+    // バッジ更新
+    // =====================================
+
+    document.getElementById(
+      "day2-course-badge"
+    ).textContent =
+      `現在のコース：${courseDay2}`;
+
+    document.getElementById(
+      "day3-course-badge"
+    ).textContent =
+      `現在のコース：${courseDay3}`;
+
+    document.getElementById(
+      "day4-course-badge"
+    ).textContent =
+      `現在のコース：${courseDay4}`;
+
+
+
+    // =====================================
+    // 描画実行
+    // =====================================
+
+    renderTimeline(
+      "day1-timeline",
+      schedules.day1
+    );
+
+    renderTimeline(
+      "day2-timeline",
+      schedules.day2_mae,
+      schedules.day2[courseDay2],
+      schedules.day2_ato
+    );
+
+    renderTimeline(
+      "day3-timeline",
+      schedules.day3[courseDay3]
+    );
+
+    renderTimeline(
+      "day4-timeline",
+      schedules.day4[courseDay4]
+    );
 
   </script>
 
