@@ -62,6 +62,9 @@ let selectedCourseDay2 =
 let selectedCourseDay3 =
   localStorage.getItem("courseDay3") || "α";
 
+let selectedCourseDay4 =
+  localStorage.getItem("courseDay4") || "小樽";
+
 
 // ===============================
 // コース表示更新
@@ -75,6 +78,9 @@ function updateCourseDisplay() {
   const course3Element =
     document.getElementById("course-day3");
 
+  const course4Element =
+    document.getElementById("course-day4");
+
 
   const courseNamesDay2 = {
     A: "A（カヌー）",
@@ -87,6 +93,14 @@ function updateCourseDisplay() {
     β: "β（登山）",
     γ: "γ（三松正夫記念館）"
   };
+  const courseNamesDay4 = {
+
+    小樽: "小樽",
+    室蘭: "室蘭"
+
+  };
+
+  
 
 
   if (course2Element) {
@@ -102,6 +116,13 @@ function updateCourseDisplay() {
       `3日目：${courseNamesDay3[selectedCourseDay3]}`;
 
   }
+
+  if (course4Element) {
+
+  course4Element.textContent =
+    `4日目：${courseNamesDay4[selectedCourseDay4]}`;
+
+}
 
 }
 
