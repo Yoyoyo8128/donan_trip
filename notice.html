@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+
+  <meta charset="UTF-8" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
+  <title>連絡 | 道南コース</title>
+
+  <!-- Google Fonts -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- CSS -->
+
+  <link rel="stylesheet" href="style.css" />
+
+</head>
+
+<body class="notice-page">
+
+  <!-- Background -->
+
+  <div class="bg-overlay"></div>
+
+  <div class="bg-glow"></div>
+
+  <div class="bg-glow second"></div>
+
+  <!-- Header -->
+
+  <header class="page-header">
+
+    <div class="mini-title">
+      NOTICES
+    </div>
+
+    <h1 class="page-title">
+      連絡
+    </h1>
+
+    <p class="page-subtitle">
+      修学旅行中のお知らせ
+    </p>
+
+  </header>
+
+  <!-- Main -->
+
+  <main class="notice-container">
+
+    <!-- Notice List -->
+
+    <div id="notice-list"></div>
+
+  </main>
+
+  <!-- Bottom Navigation -->
+
+  <nav class="bottom-nav">
+
+    <a
+      href="index.html"
+      class="nav-item"
+    >
+      <span>🏠</span>
+      <small>ホーム</small>
+    </a>
+
+    <a
+      href="schedule.html"
+      class="nav-item"
+    >
+      <span>🗓</span>
+      <small>行程</small>
+    </a>
+
+    <a
+      href="notice.html"
+      class="nav-item active"
+    >
+      <span>📢</span>
+      <small>連絡</small>
+    </a>
+
+    <a
+      href="pdf/shiori.pdf"
+      target="_blank"
+      class="nav-item"
+    >
+      <span>📘</span>
+      <small>しおり</small>
+    </a>
+
+    <button
+      class="nav-item"
+      onclick="alert('設定画面は後で追加します！')"
+    >
+      <span>⚙</span>
+      <small>設定</small>
+    </button>
+
+  </nav>
+
+  <!-- JavaScript -->
+
+  <script>
+
+    // =====================================
+    // 連絡データ
+    // =====================================
+    //
+    // ▼ 連絡を追加する方法
+    //
+    // 下の notices に追加するだけ！
+    //
+    // 例：
+    //
+    // {
+    //   title: "集合場所変更",
+    //   body: "正面玄関集合になりました",
+    //   time: "6/2 14:20"
+    // }
+    //
+    // をコピーして増やせばOK！
+    //
+    // ※ 最後のデータ以外には「,」が必要
+    //
+    // =====================================
+
+    const notices = [
+
+      {
+        title: "集合時間変更",
+        body: "17:00集合 → 17:15集合に変更になりました。",
+        time: "6/2 14:20"
+      },
+
+      {
+        title: "花火について",
+        body: "20:15より洞爺湖花火大会が始まります。",
+        time: "6/2 18:40"
+      },
+
+      {
+        title: "忘れ物",
+        body: "3組の水筒がフロントに届いています。",
+        time: "6/2 20:10"
+      }
+
+    ];
+
+
+    // =====================================
+    // 連絡表示
+    // =====================================
+
+    function renderNotices(){
+
+      const noticeList =
+        document.getElementById("notice-list");
+
+      noticeList.innerHTML = "";
+
+      notices.forEach(notice => {
+
+        const card =
+          document.createElement("div");
+
+        card.className =
+          "notice-item glass";
+
+        card.innerHTML = `
+
+          <div class="notice-time">
+            ${notice.time}
+          </div>
+
+          <div class="notice-card-title">
+            ${notice.title}
+          </div>
+
+          <div class="notice-card-body">
+            ${notice.body}
+          </div>
+
+        `;
+
+        noticeList.appendChild(card);
+
+      });
+
+    }
+
+    renderNotices();
+
+  </script>
+
+</body>
+</html>

@@ -1019,3 +1019,98 @@ body{
   }
 
 }
+
+/* =========================
+   NOTICE PAGE
+========================= */
+
+.notice-page{
+
+  min-height:100vh;
+}
+
+.notice-container{
+
+  padding:20px;
+
+  padding-bottom:120px;
+
+  max-width:720px;
+
+  margin:auto;
+}
+
+/* =========================
+   NOTICE ITEM
+========================= */
+
+.notice-item{
+
+  margin-bottom:20px;
+
+  padding:24px;
+
+  border-radius:28px;
+
+  position:relative;
+
+  overflow:hidden;
+}
+
+.notice-item::before{
+
+  content:"";
+
+  position:absolute;
+
+  top:0;
+  left:0;
+
+  width:4px;
+  height:100%;
+
+  background:#60a5fa;
+
+  box-shadow:
+  0 0 18px #60a5fa;
+}
+
+.notice-time{
+
+  color:#bfdbfe;
+
+  font-size:13px;
+
+  margin-bottom:12px;
+}
+
+.notice-card-title{
+
+  font-size:24px;
+
+  font-weight:700;
+
+  margin-bottom:12px;
+}
+
+.notice-card-body{
+
+  color:#dbeafe;
+
+  line-height:1.8;
+
+  font-size:15px;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:480px){
+
+  .notice-card-title{
+
+    font-size:20px;
+  }
+
+}
