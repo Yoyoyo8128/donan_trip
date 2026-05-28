@@ -1,109 +1,75 @@
-// script.js
+// ====================================
 
-// 現在時刻表示
-
-function updateClock(){
-
-  const now = new Date();
-
-  const text =
-    now.getFullYear() + "/" +
-    (now.getMonth()+1) + "/" +
-    now.getDate() + " " +
-    now.getHours().toString().padStart(2,"0") + ":" +
-    now.getMinutes().toString().padStart(2,"0");
-
-  document.getElementById("current-time").textContent = text;
-}
-
-setInterval(updateClock,1000);
-
-updateClock();
+setInterval(updateSchedule, 1000);
+updateSchedule();
 
 
-// コース保存
+// ====================================
+// 地図
+// ====================================
 
-const select = document.getElementById("course-select");
+const map = L.map('map').setView([42.4, 140.8], 8);
 
-const savedCourse = localStorage.getItem("course");
+L.tileLayer(
+  'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+  {
+    attribution: '&copy; OpenStreetMap contributors'
+  }
+).addTo(map);
 
-if(savedCourse){
-  select.value = savedCourse;
-}
 
-select.addEventListener("change",()=>{
+// 1日目
+const day1 = [
+  [41.77, 140.73],
+  [41.79, 140.75]
+];
 
-  localStorage.setItem(
-    "course",
-    select.value
-  );
+// 2日目
+const day2 = [
+  [41.79, 140.75],
+  [42.56, 140.84]
+];
 
-  updateSchedule();
+// 3日目
+const day3 = [
+  [42.56, 140.84],
+  [42.49, 141.14]
+];
 
+// 4日目
+const day4 = [
+  [42.49, 141.14],
+  [43.19, 140.99]
+];
+
+L.polyline(day1, {
+  color: 'orange',
+  weight: 7
+}).addTo(map);
+
+L.polyline(day2, {
+  color: 'deepskyblue',
+  weight: 7
+}).addTo(map);
+
+L.polyline(day3, {
+  color: 'yellow',
+  weight: 7
+}).addTo(map);
+
+L.polyline(day4, {
+  color: 'hotpink',
+  weight: 7
+}).addTo(map);
+
+
+// ニコちゃん
+const smileIcon = L.divIcon({
+  className: 'emoji-icon',
+  html: '😊',
+  iconSize: [40, 40]
 });
 
-
-// 仮スケジュール
-
-const schedules = {
-
-  A:{
-    time:"13:30",
-    title:"大沼公園着",
-    description:"カヌー体験"
-  },
-
-  B:{
-    time:"15:30",
-    title:"中島ハイキング",
-    description:"自由行動"
-  },
-
-  C:{
-    time:"15:15",
-    title:"ウポポイ学習",
-    description:"館内自由行動"
-  },
-
-  alpha:{
-    time:"11:30",
-    title:"有珠山山頂",
-    description:"ロープウェイ"
-  },
-
-  beta:{
-    time:"08:30",
-    title:"登山開始",
-    description:"体調注意"
-  },
-
-  gamma:{
-    time:"09:15",
-    title:"三松正夫記念館",
-    description:"自由見学"
-  }
-
-};
-
-
-function updateSchedule(){
-
-  const course = select.value;
-
-  const data = schedules[course];
-
-  document.getElementById(
-    "event-time"
-  ).textContent = data.time;
-
-  document.getElementById(
-    "event-title"
-  ).textContent = data.title;
-
-  document.getElementById(
-    "event-description"
-  ).textContent = data.description;
-
-}
-
-updateSchedule();
+L.marker([42.56, 140.84], {
+  icon: smileIcon
+}).addTo(map);
