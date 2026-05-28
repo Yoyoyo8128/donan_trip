@@ -1,588 +1,354 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
+
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>道南コース 2026</title>
 
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
+  <title>道南コース</title>
+
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
 
-  <style>
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-    }
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap"
+    rel="stylesheet"
+  />
 
-    body{
-      font-family:'Inter','Noto Sans JP',sans-serif;
-      min-height:100vh;
-      background:
-      linear-gradient(
-      180deg,
-      #0f172a 0%,
-      #1e3a8a 50%,
-      #2563eb 100%
-      );
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css" />
 
-      color:white;
-      overflow-x:hidden;
-    }
-
-    .background-glow{
-      position:fixed;
-      width:500px;
-      height:500px;
-      background:#60a5fa;
-      filter:blur(140px);
-      opacity:0.15;
-      top:-120px;
-      right:-120px;
-      z-index:0;
-    }
-
-    .container{
-      position:relative;
-      z-index:1;
-      padding:24px;
-      padding-bottom:120px;
-      max-width:700px;
-      margin:auto;
-    }
-
-    .hero{
-      margin-top:30px;
-      margin-bottom:32px;
-    }
-
-    .title{
-      font-size:42px;
-      font-weight:700;
-      letter-spacing:-1px;
-      line-height:1.1;
-    }
-
-    .subtitle{
-      margin-top:8px;
-      color:#bfdbfe;
-      font-size:16px;
-    }
-
-    .clock{
-      margin-top:28px;
-      padding:20px;
-      border-radius:24px;
-
-      background:rgba(255,255,255,0.08);
-      backdrop-filter:blur(14px);
-
-      border:1px solid rgba(255,255,255,0.12);
-
-      box-shadow:
-      0 10px 40px rgba(37,99,235,0.25);
-    }
-
-    .date{
-      color:#bfdbfe;
-      font-size:14px;
-      margin-bottom:8px;
-    }
-
-    .time{
-      font-size:48px;
-      font-weight:700;
-      letter-spacing:2px;
-    }
-
-    .next-card{
-      margin-top:28px;
-      padding:28px;
-      border-radius:28px;
-
-      background:rgba(255,255,255,0.10);
-      backdrop-filter:blur(16px);
-
-      border:1px solid rgba(255,255,255,0.12);
-
-      box-shadow:
-      0 10px 40px rgba(37,99,235,0.25);
-
-      animation:float 4s ease-in-out infinite;
-    }
-
-    @keyframes float{
-      0%{ transform:translateY(0px);}
-      50%{ transform:translateY(-6px);}
-      100%{ transform:translateY(0px);}
-    }
-
-    .label{
-      color:#93c5fd;
-      font-size:13px;
-      letter-spacing:1px;
-      margin-bottom:16px;
-    }
-
-    .next-time{
-      font-size:52px;
-      font-weight:700;
-      line-height:1;
-    }
-
-    .next-title{
-      margin-top:12px;
-      font-size:30px;
-      font-weight:700;
-      line-height:1.3;
-    }
-
-    .next-sub{
-      margin-top:8px;
-      color:#dbeafe;
-      font-size:16px;
-    }
-
-    .countdown{
-      margin-top:24px;
-      display:inline-block;
-      padding:10px 18px;
-      border-radius:999px;
-
-      background:#2563eb;
-      font-weight:600;
-      box-shadow:
-      0 0 20px rgba(96,165,250,0.5);
-    }
-
-    .section-title{
-      margin-top:36px;
-      margin-bottom:16px;
-      font-size:20px;
-      font-weight:700;
-    }
-
-    .timeline{
-      display:flex;
-      flex-direction:column;
-      gap:18px;
-    }
-
-    .timeline-item{
-      display:flex;
-      gap:14px;
-      align-items:flex-start;
-    }
-
-    .dot{
-      width:14px;
-      height:14px;
-      background:#60a5fa;
-      border-radius:50%;
-      margin-top:6px;
-      box-shadow:0 0 12px #60a5fa;
-    }
-
-    .timeline-content{
-      flex:1;
-      padding-bottom:14px;
-      border-bottom:1px solid rgba(255,255,255,0.08);
-    }
-
-    .timeline-time{
-      color:#93c5fd;
-      font-size:14px;
-    }
-
-    .timeline-title{
-      margin-top:4px;
-      font-size:18px;
-      font-weight:600;
-    }
-
-    .course-card{
-      margin-top:28px;
-      padding:22px;
-      border-radius:24px;
-
-      background:rgba(255,255,255,0.08);
-      backdrop-filter:blur(14px);
-
-      border:1px solid rgba(255,255,255,0.12);
-    }
-
-    .course-title{
-      font-size:18px;
-      font-weight:700;
-      margin-bottom:14px;
-    }
-
-    .course-item{
-      margin-bottom:10px;
-      color:#dbeafe;
-    }
-
-    .change-btn{
-      margin-top:12px;
-      width:100%;
-      padding:14px;
-      border:none;
-      border-radius:16px;
-
-      background:#2563eb;
-      color:white;
-      font-weight:600;
-      font-size:15px;
-
-      cursor:pointer;
-      transition:0.2s;
-    }
-
-    .change-btn:hover{
-      transform:translateY(-2px);
-      background:#3b82f6;
-    }
-
-    .notice{
-      margin-top:28px;
-      padding:22px;
-      border-radius:24px;
-
-      background:
-      linear-gradient(
-      135deg,
-      rgba(239,68,68,0.25),
-      rgba(127,29,29,0.4)
-      );
-
-      border:1px solid rgba(255,255,255,0.12);
-    }
-
-    .notice-label{
-      color:#fecaca;
-      font-size:13px;
-      margin-bottom:10px;
-    }
-
-    .notice-title{
-      font-size:22px;
-      font-weight:700;
-    }
-
-    .notice-text{
-      margin-top:10px;
-      color:#fee2e2;
-      line-height:1.6;
-    }
-
-    .pdf-card{
-      margin-top:28px;
-      padding:24px;
-      border-radius:24px;
-
-      background:rgba(255,255,255,0.08);
-      backdrop-filter:blur(14px);
-
-      border:1px solid rgba(255,255,255,0.12);
-
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-    }
-
-    .pdf-title{
-      font-size:18px;
-      font-weight:700;
-    }
-
-    .pdf-btn{
-      padding:12px 18px;
-      border-radius:14px;
-      background:#2563eb;
-      color:white;
-      text-decoration:none;
-      font-weight:600;
-    }
-
-    .bottom-nav{
-      position:fixed;
-      bottom:0;
-      left:0;
-      right:0;
-
-      height:82px;
-
-      background:rgba(15,23,42,0.75);
-      backdrop-filter:blur(20px);
-
-      border-top:1px solid rgba(255,255,255,0.08);
-
-      display:flex;
-      justify-content:space-around;
-      align-items:center;
-
-      z-index:10;
-    }
-
-    .nav-item{
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      gap:6px;
-
-      color:#bfdbfe;
-      font-size:12px;
-    }
-
-    .nav-item.active{
-      color:white;
-    }
-
-    .nav-icon{
-      font-size:22px;
-    }
-
-    @media(max-width:480px){
-
-      .title{
-        font-size:34px;
-      }
-
-      .next-time{
-        font-size:42px;
-      }
-
-      .next-title{
-        font-size:24px;
-      }
-
-      .time{
-        font-size:40px;
-      }
-
-    }
-
-  </style>
 </head>
 
 <body>
 
-  <div class="background-glow"></div>
+  <!-- 背景 -->
 
-  <div class="container">
+  <div class="bg-overlay"></div>
 
-    <section class="hero">
+  <div class="bg-glow"></div>
 
-      <h1 class="title">
-        道南コース
-      </h1>
+  <div class="bg-glow second"></div>
 
-      <p class="subtitle">
-        2026 School Trip
-      </p>
+  <!-- Header -->
 
-      <div class="clock">
+  <header class="hero">
 
-        <div class="date">
-          2026 / 06 / 02
+    <div class="hero-top">
+
+      <div>
+
+        <div class="mini-title">
+          HOKKAIDO SCHOOL TRIP
         </div>
 
-        <div class="time" id="clock">
-          13:12
+        <h1 class="main-title">
+          道南コース
+        </h1>
+
+        <div class="sub-title">
+          2026 School Trip Companion
         </div>
 
       </div>
 
-    </section>
+      <button class="notification-btn">
+        🔔
+      </button>
 
-    <section class="next-card">
+    </div>
 
-      <div class="label">
+    <!-- Clock -->
+
+    <div class="clock-card glass">
+
+      <div id="date" class="date">
+        Loading...
+      </div>
+
+      <div id="clock" class="clock">
+        00:00:00
+      </div>
+
+    </div>
+
+  </header>
+
+  <!-- Main -->
+
+  <main class="container">
+
+    <!-- NEXT -->
+
+    <section class="next-card glass">
+
+      <div class="next-label">
         NEXT SCHEDULE
       </div>
 
-      <div class="next-time">
+      <div id="next-time" class="next-time">
         13:30
       </div>
 
-      <div class="next-title">
-        大沼公園着
-      </div>
-
-      <div class="next-sub">
+      <div id="next-title" class="next-title">
         カヌー体験
       </div>
 
-      <div class="countdown">
+      <div id="next-sub" class="next-sub">
+        大沼公園
+      </div>
+
+      <div id="countdown" class="countdown">
         あと18分
       </div>
 
     </section>
 
-    <h2 class="section-title">
-      今日のスケジュール
-    </h2>
+    <!-- Timeline -->
 
-    <div class="timeline">
+    <section>
 
-      <div class="timeline-item">
-        <div class="dot"></div>
+      <div class="section-title">
+        今日のスケジュール
+      </div>
 
-        <div class="timeline-content">
-          <div class="timeline-time">
-            07:00
-          </div>
+      <div id="timeline" class="timeline"></div>
 
-          <div class="timeline-title">
-            起床
-          </div>
+    </section>
+
+    <!-- Course -->
+
+    <section class="course-card glass">
+
+      <div class="course-header">
+
+        <div class="section-title no-margin">
+          コース設定
         </div>
+
+        <button
+          class="setting-btn"
+          onclick="openSettings()"
+        >
+          変更
+        </button>
+
       </div>
 
-      <div class="timeline-item">
-        <div class="dot"></div>
-
-        <div class="timeline-content">
-          <div class="timeline-time">
-            08:30
-          </div>
-
-          <div class="timeline-title">
-            花びしホテル出発
-          </div>
-        </div>
+      <div
+        id="course-day2"
+        class="course-item"
+      >
+        2日目：A
       </div>
 
-      <div class="timeline-item">
-        <div class="dot"></div>
-
-        <div class="timeline-content">
-          <div class="timeline-time">
-            09:30
-          </div>
-
-          <div class="timeline-title">
-            鹿部間欠泉
-          </div>
-        </div>
+      <div
+        id="course-day3"
+        class="course-item"
+      >
+        3日目：α
       </div>
 
-      <div class="timeline-item">
-        <div class="dot"></div>
+    </section>
 
-        <div class="timeline-content">
-          <div class="timeline-time">
-            13:30
-          </div>
+    <!-- Notice -->
 
-          <div class="timeline-title">
-            カヌー体験
-          </div>
-        </div>
-      </div>
-
-    </div>
-
-    <div class="course-card">
-
-      <div class="course-title">
-        現在のコース
-      </div>
-
-      <div class="course-item">
-        2日目：A（カヌー）
-      </div>
-
-      <div class="course-item">
-        3日目：β（登山）
-      </div>
-
-      <button class="change-btn">
-        コースを変更
-      </button>
-
-    </div>
-
-    <div class="notice">
+    <section class="notice-card">
 
       <div class="notice-label">
         IMPORTANT
       </div>
 
-      <div class="notice-title">
+      <div
+        id="notice-title"
+        class="notice-title"
+      >
         集合時間変更
       </div>
 
-      <div class="notice-text">
-        17:00集合 → 17:15集合に変更になりました。
+      <div
+        id="notice-text"
+        class="notice-text"
+      >
+        17:00 → 17:15
       </div>
 
-    </div>
+    </section>
 
-    <div class="pdf-card">
+    <!-- PDF -->
+
+    <section class="pdf-card glass">
 
       <div>
+
         <div class="pdf-title">
           📘 しおりPDF
         </div>
+
+        <div class="pdf-sub">
+          修学旅行のしおりを見る
+        </div>
+
       </div>
 
-      <a href="#" class="pdf-btn">
+      <a
+        href="pdf/shiori.pdf"
+        target="_blank"
+        class="pdf-btn"
+      >
         開く
       </a>
+
+    </section>
+
+  </main>
+
+  <!-- Bottom Nav -->
+
+  <nav class="bottom-nav">
+
+    <button class="nav-item active">
+      <span>🏠</span>
+      <small>ホーム</small>
+    </button>
+
+    <button class="nav-item">
+      <span>🗓</span>
+      <small>行程</small>
+    </button>
+
+    <button class="nav-item">
+      <span>📢</span>
+      <small>連絡</small>
+    </button>
+
+    <button class="nav-item">
+      <span>📘</span>
+      <small>しおり</small>
+    </button>
+
+    <button
+      class="nav-item"
+      onclick="openSettings()"
+    >
+      <span>⚙</span>
+      <small>設定</small>
+    </button>
+
+  </nav>
+
+  <!-- Settings Modal -->
+
+  <div
+    class="modal"
+    id="settingsModal"
+  >
+
+    <div class="modal-content">
+
+      <div class="modal-header">
+
+        <h2>
+          コース設定
+        </h2>
+
+        <button
+          class="close-btn"
+          onclick="closeSettings()"
+        >
+          ✕
+        </button>
+
+      </div>
+
+      <!-- Day2 -->
+
+      <div class="modal-section">
+
+        <div class="modal-label">
+          2日目
+        </div>
+
+        <div class="course-grid">
+
+          <button
+            class="course-option"
+            onclick="selectDay2('A')"
+          >
+            A
+          </button>
+
+          <button
+            class="course-option"
+            onclick="selectDay2('B')"
+          >
+            B
+          </button>
+
+          <button
+            class="course-option"
+            onclick="selectDay2('C')"
+          >
+            C
+          </button>
+
+        </div>
+
+      </div>
+
+      <!-- Day3 -->
+
+      <div class="modal-section">
+
+        <div class="modal-label">
+          3日目
+        </div>
+
+        <div class="course-grid">
+
+          <button
+            class="course-option"
+            onclick="selectDay3('α')"
+          >
+            α
+          </button>
+
+          <button
+            class="course-option"
+            onclick="selectDay3('β')"
+          >
+            β
+          </button>
+
+          <button
+            class="course-option"
+            onclick="selectDay3('γ')"
+          >
+            γ
+          </button>
+
+        </div>
+
+      </div>
+
+      <button
+        class="save-btn"
+        onclick="saveSettings()"
+      >
+        保存
+      </button>
 
     </div>
 
   </div>
 
-  <nav class="bottom-nav">
+  <!-- JS -->
 
-    <div class="nav-item active">
-      <div class="nav-icon">🏠</div>
-      <div>ホーム</div>
-    </div>
-
-    <div class="nav-item">
-      <div class="nav-icon">🗓</div>
-      <div>行程</div>
-    </div>
-
-    <div class="nav-item">
-      <div class="nav-icon">📢</div>
-      <div>連絡</div>
-    </div>
-
-    <div class="nav-item">
-      <div class="nav-icon">📘</div>
-      <div>しおり</div>
-    </div>
-
-    <div class="nav-item">
-      <div class="nav-icon">⚙</div>
-      <div>設定</div>
-    </div>
-
-  </nav>
-
-  <script>
-
-    function updateClock(){
-
-      const now = new Date();
-
-      const h = String(now.getHours()).padStart(2,'0');
-      const m = String(now.getMinutes()).padStart(2,'0');
-
-      document.getElementById('clock').textContent =
-      `${h}:${m}`;
-
-    }
-
-    updateClock();
-
-    setInterval(updateClock,1000);
-
-  </script>
+  <script src="script.js"></script>
 
 </body>
 </html>

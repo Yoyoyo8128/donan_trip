@@ -1,3 +1,4 @@
+
 /* =========================
    RESET
 ========================= */
@@ -13,28 +14,54 @@ html{
 }
 
 body{
-  font-family:'Inter','Noto Sans JP',sans-serif;
 
-  min-height:100vh;
+  font-family:
+  'Inter',
+  'Noto Sans JP',
+  sans-serif;
 
   color:white;
+
+  min-height:100vh;
 
   overflow-x:hidden;
 
   background:
+
   linear-gradient(
-  180deg,
-  #0f172a 0%,
-  #1e3a8a 50%,
-  #2563eb 100%
-  );
+    rgba(15,23,42,0.75),
+    rgba(30,58,138,0.82)
+  ),
+
+  url("images/hakodate.jpg");
+
+  background-size:cover;
+
+  background-position:center;
+
+  background-attachment:fixed;
 }
 
 /* =========================
    BACKGROUND
 ========================= */
 
-.background-glow{
+.bg-overlay{
+  position:fixed;
+  inset:0;
+
+  background:
+  linear-gradient(
+    180deg,
+    rgba(15,23,42,0.4),
+    rgba(37,99,235,0.55)
+  );
+
+  z-index:-3;
+}
+
+.bg-glow{
+
   position:fixed;
 
   width:500px;
@@ -45,46 +72,22 @@ body{
 
   background:#60a5fa;
 
-  filter:blur(140px);
+  filter:blur(150px);
 
-  opacity:0.15;
+  opacity:0.18;
 
-  z-index:0;
+  z-index:-2;
 }
 
-.background-glow-2{
-  position:fixed;
+.bg-glow.second{
 
-  width:400px;
-  height:400px;
+  top:auto;
+  right:auto;
 
-  bottom:-120px;
+  bottom:-160px;
   left:-120px;
 
   background:#2563eb;
-
-  filter:blur(120px);
-
-  opacity:0.15;
-
-  z-index:0;
-}
-
-/* =========================
-   LAYOUT
-========================= */
-
-.container{
-  position:relative;
-  z-index:1;
-
-  max-width:720px;
-
-  margin:auto;
-
-  padding:24px;
-
-  padding-bottom:120px;
 }
 
 /* =========================
@@ -92,142 +95,215 @@ body{
 ========================= */
 
 .hero{
-  margin-top:36px;
-  margin-bottom:32px;
+
+  padding:
+  28px
+  22px
+  10px;
 }
 
-.title{
-  font-size:42px;
-  font-weight:700;
+.hero-top{
 
-  line-height:1.1;
+  display:flex;
 
-  letter-spacing:-1px;
+  justify-content:space-between;
+
+  align-items:flex-start;
 }
 
-.subtitle{
-  margin-top:8px;
+.mini-title{
 
   color:#bfdbfe;
 
-  font-size:16px;
-}
-
-/* =========================
-   GLASS UI
-========================= */
-
-.glass{
-  background:rgba(255,255,255,0.08);
-
-  backdrop-filter:blur(16px);
-
-  border:1px solid rgba(255,255,255,0.12);
-
-  box-shadow:
-  0 10px 40px rgba(37,99,235,0.20);
-}
-
-/* =========================
-   CLOCK CARD
-========================= */
-
-.clock{
-  margin-top:28px;
-
-  padding:22px;
-
-  border-radius:24px;
-}
-
-.date{
-  color:#bfdbfe;
-
-  font-size:14px;
-
-  margin-bottom:10px;
-}
-
-.time{
-  font-size:52px;
-
-  font-weight:700;
+  font-size:12px;
 
   letter-spacing:2px;
+
+  margin-bottom:8px;
 }
 
-/* =========================
-   NEXT SCHEDULE
-========================= */
+.main-title{
 
-.next-card{
-  margin-top:28px;
+  font-size:42px;
 
-  padding:30px;
-
-  border-radius:30px;
-
-  animation:float 4s ease-in-out infinite;
-}
-
-@keyframes float{
-
-  0%{
-    transform:translateY(0px);
-  }
-
-  50%{
-    transform:translateY(-6px);
-  }
-
-  100%{
-    transform:translateY(0px);
-  }
-
-}
-
-.label{
-  color:#93c5fd;
-
-  font-size:13px;
-
-  letter-spacing:1.5px;
-
-  margin-bottom:18px;
-}
-
-.next-time{
-  font-size:56px;
-
-  font-weight:700;
+  font-weight:800;
 
   line-height:1;
 }
 
-.next-title{
+.sub-title{
+
+  margin-top:10px;
+
+  color:#dbeafe;
+
+  font-size:15px;
+}
+
+.notification-btn{
+
+  width:52px;
+  height:52px;
+
+  border:none;
+
+  border-radius:18px;
+
+  background:
+  rgba(255,255,255,0.12);
+
+  color:white;
+
+  font-size:20px;
+
+  backdrop-filter:blur(12px);
+
+  cursor:pointer;
+}
+
+/* =========================
+   GLASS
+========================= */
+
+.glass{
+
+  background:
+  linear-gradient(
+    135deg,
+    rgba(255,255,255,0.14),
+    rgba(255,255,255,0.05)
+  );
+
+  backdrop-filter:blur(18px);
+
+  border:
+  1px solid rgba(255,255,255,0.12);
+
+  box-shadow:
+  0 10px 40px rgba(0,0,0,0.25);
+}
+
+/* =========================
+   CLOCK
+========================= */
+
+.clock-card{
+
+  margin-top:26px;
+
+  padding:22px;
+
+  border-radius:28px;
+}
+
+.date{
+
+  color:#dbeafe;
+
+  font-size:14px;
+}
+
+.clock{
+
+  margin-top:8px;
+
+  font-size:48px;
+
+  font-weight:800;
+}
+
+/* =========================
+   CONTAINER
+========================= */
+
+.container{
+
+  padding:20px;
+
+  padding-bottom:120px;
+
+  max-width:720px;
+
+  margin:auto;
+}
+
+/* =========================
+   NEXT CARD
+========================= */
+
+.next-card{
+
+  position:relative;
+
+  overflow:hidden;
+
+  padding:30px;
+
+  border-radius:32px;
+}
+
+.next-card::before{
+
+  content:"";
+
+  position:absolute;
+
+  inset:0;
+
+  background:
+
+  linear-gradient(
+    135deg,
+    rgba(96,165,250,0.18),
+    transparent
+  );
+
+  pointer-events:none;
+}
+
+.next-label{
+
+  color:#bfdbfe;
+
+  letter-spacing:2px;
+
+  font-size:12px;
+}
+
+.next-time{
+
   margin-top:14px;
+
+  font-size:60px;
+
+  font-weight:800;
+}
+
+.next-title{
+
+  margin-top:10px;
 
   font-size:30px;
 
   font-weight:700;
-
-  line-height:1.3;
 }
 
 .next-sub{
+
   margin-top:8px;
 
   color:#dbeafe;
-
-  font-size:16px;
 }
 
 .countdown{
+
   margin-top:24px;
 
   display:inline-block;
 
-  padding:12px 20px;
+  padding:
+  12px
+  20px;
 
   border-radius:999px;
 
@@ -236,20 +312,26 @@ body{
   font-weight:700;
 
   box-shadow:
-  0 0 20px rgba(96,165,250,0.45);
+  0 0 25px rgba(96,165,250,0.4);
 }
 
 /* =========================
-   SECTION
+   SECTIONS
 ========================= */
 
 .section-title{
-  margin-top:40px;
-  margin-bottom:18px;
 
   font-size:22px;
 
   font-weight:700;
+
+  margin-bottom:18px;
+
+  margin-top:36px;
+}
+
+.no-margin{
+  margin:0;
 }
 
 /* =========================
@@ -257,32 +339,38 @@ body{
 ========================= */
 
 .timeline{
+
   display:flex;
+
   flex-direction:column;
-  gap:18px;
+
+  gap:16px;
 }
 
 .timeline-item{
+
   display:flex;
+
   gap:14px;
-  align-items:flex-start;
 }
 
-.dot{
+.timeline-dot{
+
   width:14px;
   height:14px;
-
-  margin-top:6px;
 
   border-radius:50%;
 
   background:#60a5fa;
 
+  margin-top:8px;
+
   box-shadow:
-  0 0 14px #60a5fa;
+  0 0 18px #60a5fa;
 }
 
 .timeline-content{
+
   flex:1;
 
   padding-bottom:14px;
@@ -292,12 +380,14 @@ body{
 }
 
 .timeline-time{
-  color:#93c5fd;
+
+  color:#bfdbfe;
 
   font-size:14px;
 }
 
 .timeline-title{
+
   margin-top:4px;
 
   font-size:18px;
@@ -306,125 +396,99 @@ body{
 }
 
 /* =========================
-   COURSE CARD
+   COURSE
 ========================= */
 
 .course-card{
-  margin-top:30px;
+
+  margin-top:34px;
 
   padding:24px;
 
-  border-radius:24px;
+  border-radius:28px;
 }
 
-.course-title{
-  font-size:20px;
+.course-header{
 
-  font-weight:700;
+  display:flex;
 
-  margin-bottom:16px;
+  justify-content:space-between;
+
+  align-items:center;
 }
 
-.course-item{
-  margin-bottom:12px;
-
-  color:#dbeafe;
-
-  font-size:16px;
-}
-
-.change-btn{
-  margin-top:16px;
-
-  width:100%;
-
-  padding:15px;
+.setting-btn{
 
   border:none;
 
-  border-radius:16px;
+  padding:
+  10px
+  16px;
+
+  border-radius:14px;
 
   background:#2563eb;
 
   color:white;
 
-  font-size:15px;
-
   font-weight:700;
 
   cursor:pointer;
-
-  transition:0.25s;
 }
 
-.change-btn:hover{
-  transform:translateY(-2px);
+.course-item{
 
-  background:#3b82f6;
-}
+  margin-top:16px;
 
-.change-btn:active{
-  transform:scale(0.98);
+  color:#dbeafe;
+
+  font-size:17px;
 }
 
 /* =========================
    NOTICE
 ========================= */
 
-.notice{
-  margin-top:30px;
+.notice-card{
+
+  margin-top:34px;
 
   padding:24px;
 
-  border-radius:24px;
+  border-radius:28px;
 
   background:
+
   linear-gradient(
-  135deg,
-  rgba(239,68,68,0.22),
-  rgba(127,29,29,0.45)
+    135deg,
+    rgba(239,68,68,0.22),
+    rgba(127,29,29,0.4)
   );
 
   border:
   1px solid rgba(255,255,255,0.12);
-
-  animation:pulse 2.5s infinite;
-}
-
-@keyframes pulse{
-
-  0%{
-    box-shadow:0 0 0 rgba(239,68,68,0);
-  }
-
-  50%{
-    box-shadow:
-    0 0 30px rgba(239,68,68,0.18);
-  }
-
-  100%{
-    box-shadow:0 0 0 rgba(239,68,68,0);
-  }
-
 }
 
 .notice-label{
+
   color:#fecaca;
 
-  font-size:13px;
+  font-size:12px;
 
-  letter-spacing:1px;
-
-  margin-bottom:10px;
+  letter-spacing:2px;
 }
 
 .notice-title{
-  font-size:24px;
+
+  margin-top:12px;
+
+  font-size:26px;
 
   font-weight:700;
 }
 
 .notice-text{
+
   margin-top:10px;
 
   color:#fee2e2;
@@ -433,15 +497,16 @@ body{
 }
 
 /* =========================
-   PDF CARD
+   PDF
 ========================= */
 
 .pdf-card{
-  margin-top:30px;
+
+  margin-top:34px;
 
   padding:24px;
 
-  border-radius:24px;
+  border-radius:28px;
 
   display:flex;
 
@@ -451,23 +516,26 @@ body{
 }
 
 .pdf-title{
-  font-size:18px;
+
+  font-size:20px;
 
   font-weight:700;
 }
 
 .pdf-sub{
+
   margin-top:6px;
 
-  color:#bfdbfe;
-
-  font-size:14px;
+  color:#dbeafe;
 }
 
 .pdf-btn{
-  padding:13px 18px;
 
-  border-radius:14px;
+  padding:
+  14px
+  18px;
+
+  border-radius:16px;
 
   background:#2563eb;
 
@@ -476,14 +544,6 @@ body{
   text-decoration:none;
 
   font-weight:700;
-
-  transition:0.25s;
-}
-
-.pdf-btn:hover{
-  background:#3b82f6;
-
-  transform:translateY(-2px);
 }
 
 /* =========================
@@ -491,13 +551,14 @@ body{
 ========================= */
 
 .bottom-nav{
+
   position:fixed;
 
   bottom:0;
   left:0;
   right:0;
 
-  height:82px;
+  height:84px;
 
   display:flex;
 
@@ -506,129 +567,204 @@ body{
   align-items:center;
 
   background:
-  rgba(15,23,42,0.75);
+  rgba(15,23,42,0.82);
 
   backdrop-filter:blur(20px);
 
   border-top:
   1px solid rgba(255,255,255,0.08);
-
-  z-index:999;
 }
 
 .nav-item{
+
+  border:none;
+
+  background:none;
+
+  color:#bfdbfe;
+
   display:flex;
 
   flex-direction:column;
 
-  align-items:center;
-
   gap:6px;
 
-  color:#bfdbfe;
+  align-items:center;
 
-  font-size:12px;
-
-  transition:0.25s;
-}
-
-.nav-item.active{
-  color:white;
-}
-
-.nav-item:hover{
-  transform:translateY(-2px);
-}
-
-.nav-icon{
   font-size:22px;
 }
 
+.nav-item small{
+
+  font-size:11px;
+}
+
+.nav-item.active{
+
+  color:white;
+}
+
 /* =========================
-   SCROLLBAR
+   MODAL
 ========================= */
 
-::-webkit-scrollbar{
-  width:8px;
+.modal{
+
+  position:fixed;
+
+  inset:0;
+
+  background:
+  rgba(0,0,0,0.6);
+
+  display:none;
+
+  justify-content:center;
+
+  align-items:center;
+
+  z-index:9999;
 }
 
-::-webkit-scrollbar-track{
-  background:#0f172a;
+.modal.show{
+
+  display:flex;
 }
 
-::-webkit-scrollbar-thumb{
+.modal-content{
+
+  width:90%;
+
+  max-width:420px;
+
+  padding:28px;
+
+  border-radius:28px;
+
+  background:
+  rgba(15,23,42,0.92);
+
+  backdrop-filter:blur(20px);
+
+  border:
+  1px solid rgba(255,255,255,0.12);
+}
+
+.modal-header{
+
+  display:flex;
+
+  justify-content:space-between;
+
+  align-items:center;
+}
+
+.close-btn{
+
+  border:none;
+
+  background:none;
+
+  color:white;
+
+  font-size:22px;
+
+  cursor:pointer;
+}
+
+.modal-section{
+
+  margin-top:28px;
+}
+
+.modal-label{
+
+  margin-bottom:14px;
+
+  color:#bfdbfe;
+}
+
+.course-grid{
+
+  display:grid;
+
+  grid-template-columns:
+  repeat(3,1fr);
+
+  gap:12px;
+}
+
+.course-option{
+
+  padding:16px;
+
+  border:none;
+
+  border-radius:18px;
+
+  background:#1e3a8a;
+
+  color:white;
+
+  font-size:18px;
+
+  font-weight:700;
+
+  cursor:pointer;
+}
+
+.course-option.active{
+
   background:#3b82f6;
+}
 
-  border-radius:999px;
+.save-btn{
+
+  width:100%;
+
+  margin-top:32px;
+
+  padding:16px;
+
+  border:none;
+
+  border-radius:18px;
+
+  background:#2563eb;
+
+  color:white;
+
+  font-size:16px;
+
+  font-weight:700;
+
+  cursor:pointer;
 }
 
 /* =========================
-   RESPONSIVE
+   MOBILE
 ========================= */
-
-@media(max-width:768px){
-
-  .container{
-    padding:20px;
-  }
-
-  .title{
-    font-size:36px;
-  }
-
-  .time{
-    font-size:44px;
-  }
-
-  .next-time{
-    font-size:46px;
-  }
-
-  .next-title{
-    font-size:26px;
-  }
-
-}
 
 @media(max-width:480px){
 
-  .container{
-    padding:18px;
+  .main-title{
+    font-size:34px;
   }
 
-  .title{
-    font-size:32px;
-  }
-
-  .subtitle{
-    font-size:14px;
-  }
-
-  .time{
-    font-size:38px;
-  }
-
-  .next-card{
-    padding:24px;
-  }
-
-  .next-time{
+  .clock{
     font-size:40px;
   }
 
+  .next-time{
+    font-size:48px;
+  }
+
   .next-title{
-    font-size:22px;
-  }
-
-  .timeline-title{
-    font-size:16px;
-  }
-
-  .notice-title{
-    font-size:20px;
+    font-size:24px;
   }
 
   .pdf-card{
+
     flex-direction:column;
 
     align-items:flex-start;
@@ -637,6 +773,7 @@ body{
   }
 
   .pdf-btn{
+
     width:100%;
 
     text-align:center;
