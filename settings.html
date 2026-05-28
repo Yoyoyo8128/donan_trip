@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+
+  <meta charset="UTF-8" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
+  <title>設定 | 道南コース</title>
+
+  <!-- Google Fonts -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- CSS -->
+
+  <link rel="stylesheet" href="style.css" />
+
+</head>
+
+<body class="settings-page">
+
+  <!-- Background -->
+
+  <div class="bg-overlay"></div>
+
+  <div class="bg-glow"></div>
+
+  <div class="bg-glow second"></div>
+
+  <!-- Header -->
+
+  <header class="page-header">
+
+    <div class="mini-title">
+      SETTINGS
+    </div>
+
+    <h1 class="page-title">
+      コース設定
+    </h1>
+
+    <p class="page-subtitle">
+      自分のコースを設定します
+    </p>
+
+  </header>
+
+  <!-- Main -->
+
+  <main class="settings-container">
+
+    <!-- Day 2 -->
+
+    <section class="settings-card glass">
+
+      <div class="settings-title">
+        2日目コース
+      </div>
+
+      <div class="settings-subtitle">
+        A / B / C を選択
+      </div>
+
+      <div class="course-grid">
+
+        <button
+          class="course-button"
+          onclick="selectDay2('A', this)"
+        >
+          A
+          <span>
+            カヌー
+          </span>
+        </button>
+
+        <button
+          class="course-button"
+          onclick="selectDay2('B', this)"
+        >
+          B
+          <span>
+            中島遊覧
+          </span>
+        </button>
+
+        <button
+          class="course-button"
+          onclick="selectDay2('C', this)"
+        >
+          C
+          <span>
+            ウポポイ
+          </span>
+        </button>
+
+      </div>
+
+    </section>
+
+    <!-- Day 3 -->
+
+    <section class="settings-card glass">
+
+      <div class="settings-title">
+        3日目コース
+      </div>
+
+      <div class="settings-subtitle">
+        α / β / γ を選択
+      </div>
+
+      <div class="course-grid">
+
+        <button
+          class="course-button"
+          onclick="selectDay3('α', this)"
+        >
+          α
+          <span>
+            火口散策
+          </span>
+        </button>
+
+        <button
+          class="course-button"
+          onclick="selectDay3('β', this)"
+        >
+          β
+          <span>
+            登山
+          </span>
+        </button>
+
+        <button
+          class="course-button"
+          onclick="selectDay3('γ', this)"
+        >
+          γ
+          <span>
+            記念館
+          </span>
+        </button>
+
+      </div>
+
+    </section>
+
+    <!-- Save -->
+
+    <button
+      class="save-settings-btn"
+      onclick="saveSettings()"
+    >
+      保存する
+    </button>
+
+    <!-- Saved Message -->
+
+    <div
+      id="saved-message"
+      class="saved-message"
+    >
+      保存しました！
+    </div>
+
+  </main>
+
+  <!-- Bottom Navigation -->
+
+  <nav class="bottom-nav">
+
+    <a
+      href="index.html"
+      class="nav-item"
+    >
+      <span>🏠</span>
+      <small>ホーム</small>
+    </a>
+
+    <a
+      href="schedule.html"
+      class="nav-item"
+    >
+      <span>🗓</span>
+      <small>行程</small>
+    </a>
+
+    <a
+      href="notice.html"
+      class="nav-item"
+    >
+      <span>📢</span>
+      <small>連絡</small>
+    </a>
+
+    <a
+      href="pdf/shiori.pdf"
+      target="_blank"
+      class="nav-item"
+    >
+      <span>📘</span>
+      <small>しおり</small>
+    </a>
+
+    <a
+      href="settings.html"
+      class="nav-item active"
+    >
+      <span>⚙</span>
+      <small>設定</small>
+    </a>
+
+  </nav>
+
+  <!-- JavaScript -->
+
+  <script>
+
+    // =====================================
+    // 初期値
+    // =====================================
+
+    let selectedDay2 =
+      localStorage.getItem("courseDay2") || "A";
+
+    let selectedDay3 =
+      localStorage.getItem("courseDay3") || "α";
+
+
+    // =====================================
+    // Day2選択
+    // =====================================
+
+    function selectDay2(course, button){
+
+      selectedDay2 = course;
+
+      document
+        .querySelectorAll(".settings-card:nth-child(1) .course-button")
+        .forEach(btn => {
+
+          btn.classList.remove("active");
+
+        });
+
+      button.classList.add("active");
+
+    }
+
+
+    // =====================================
+    // Day3選択
+    // =====================================
+
+    function selectDay3(course, button){
+
+      selectedDay3 = course;
+
+      document
+        .querySelectorAll(".settings-card:nth-child(2) .course-button")
+        .forEach(btn => {
+
+          btn.classList.remove("active");
+
+        });
+
+      button.classList.add("active");
+
+    }
+
+
+    // =====================================
+    // 保存
+    // =====================================
+
+    function saveSettings(){
+
+      localStorage.setItem(
+        "courseDay2",
+        selectedDay2
+      );
+
+      localStorage.setItem(
+        "courseDay3",
+        selectedDay3
+      );
+
+      // 保存メッセージ
+
+      const message =
+        document.getElementById("saved-message");
+
+      message.classList.add("show");
+
+      setTimeout(() => {
+
+        message.classList.remove("show");
+
+      }, 2000);
+
+    }
+
+
+    // =====================================
+    // 初期表示
+    // =====================================
+
+    window.onload = () => {
+
+      // Day2
+
+      document
+        .querySelectorAll(".settings-card:nth-child(1) .course-button")
+        .forEach(btn => {
+
+          if(
+            btn.textContent.includes(selectedDay2)
+          ){
+
+            btn.classList.add("active");
+
+          }
+
+        });
+
+      // Day3
+
+      document
+        .querySelectorAll(".settings-card:nth-child(2) .course-button")
+        .forEach(btn => {
+
+          if(
+            btn.textContent.includes(selectedDay3)
+          ){
+
+            btn.classList.add("active");
+
+          }
+
+        });
+
+    };
+
+  </script>
+
+</body>
+</html>

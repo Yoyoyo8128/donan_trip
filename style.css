@@ -1114,3 +1114,225 @@ body{
   }
 
 }
+
+/* =========================
+   SETTINGS PAGE
+========================= */
+
+.settings-page{
+
+  min-height:100vh;
+}
+
+.settings-container{
+
+  padding:20px;
+
+  padding-bottom:120px;
+
+  max-width:720px;
+
+  margin:auto;
+}
+
+/* =========================
+   SETTINGS CARD
+========================= */
+
+.settings-card{
+
+  padding:26px;
+
+  border-radius:30px;
+
+  margin-bottom:24px;
+}
+
+.settings-title{
+
+  font-size:24px;
+
+  font-weight:700;
+}
+
+.settings-subtitle{
+
+  margin-top:8px;
+
+  color:#bfdbfe;
+
+  font-size:14px;
+}
+
+/* =========================
+   COURSE GRID
+========================= */
+
+.course-grid{
+
+  margin-top:24px;
+
+  display:grid;
+
+  grid-template-columns:
+  repeat(3,1fr);
+
+  gap:14px;
+}
+
+/* =========================
+   COURSE BUTTON
+========================= */
+
+.course-button{
+
+  border:none;
+
+  border-radius:24px;
+
+  padding:
+  24px
+  12px;
+
+  background:
+  rgba(255,255,255,0.08);
+
+  color:white;
+
+  cursor:pointer;
+
+  transition:0.25s;
+
+  display:flex;
+
+  flex-direction:column;
+
+  gap:10px;
+
+  align-items:center;
+
+  justify-content:center;
+
+  font-size:28px;
+
+  font-weight:800;
+}
+
+.course-button span{
+
+  font-size:12px;
+
+  color:#dbeafe;
+
+  font-weight:500;
+}
+
+.course-button:hover{
+
+  transform:translateY(-4px);
+
+  background:
+  rgba(255,255,255,0.14);
+}
+
+.course-button.active{
+
+  background:#2563eb;
+
+  box-shadow:
+  0 0 25px rgba(96,165,250,0.45);
+}
+
+/* =========================
+   SAVE BUTTON
+========================= */
+
+.save-settings-btn{
+
+  width:100%;
+
+  padding:18px;
+
+  border:none;
+
+  border-radius:24px;
+
+  background:#2563eb;
+
+  color:white;
+
+  font-size:16px;
+
+  font-weight:700;
+
+  cursor:pointer;
+
+  transition:0.25s;
+}
+
+.save-settings-btn:hover{
+
+  background:#3b82f6;
+}
+
+/* =========================
+   SAVED MESSAGE
+========================= */
+
+.saved-message{
+
+  position:fixed;
+
+  left:50%;
+
+  bottom:110px;
+
+  transform:
+  translateX(-50%)
+  translateY(20px);
+
+  padding:
+  14px
+  20px;
+
+  border-radius:16px;
+
+  background:
+  rgba(15,23,42,0.92);
+
+  color:white;
+
+  opacity:0;
+
+  pointer-events:none;
+
+  transition:0.35s;
+
+  backdrop-filter:blur(20px);
+
+  border:
+  1px solid rgba(255,255,255,0.08);
+}
+
+.saved-message.show{
+
+  opacity:1;
+
+  transform:
+  translateX(-50%)
+  translateY(0);
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:480px){
+
+  .course-grid{
+
+    grid-template-columns:
+    1fr;
+  }
+
+}
