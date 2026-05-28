@@ -454,3 +454,118 @@ window.addEventListener("load", () => {
 // ===============================
 
 console.log("道南コース Web App 起動"); 
+
+// =====================================
+// コース設定読み込み
+// =====================================
+
+function loadCourseSettings(){
+
+  const day2 =
+    localStorage.getItem("courseDay2") || "A";
+
+  const day3 =
+    localStorage.getItem("courseDay3") || "α";
+
+
+  // 表示更新
+
+  const day2Element =
+    document.getElementById("course-day2");
+
+  const day3Element =
+    document.getElementById("course-day3");
+
+
+  if(day2Element){
+
+    day2Element.textContent =
+      `2日目：${day2}`;
+
+  }
+
+  if(day3Element){
+
+    day3Element.textContent =
+      `3日目：${day3}`;
+
+  }
+
+}
+
+loadCourseSettings();
+
+// =====================================
+// IMPORTANT同期
+// =====================================
+// =====================================
+// IMPORTANT同期
+// =====================================
+
+function loadImportantNotice(){
+
+  // notice.html のデータ取得
+
+  const notices = JSON.parse(
+    localStorage.getItem("notices")
+  ) || [];
+
+  // HTML取得
+
+  const title =
+    document.getElementById("notice-title");
+
+  const text =
+    document.getElementById("notice-text");
+
+
+  // =====================================
+  // 連絡が0件の場合
+  // =====================================
+
+  if(notices.length === 0){
+
+    if(title){
+
+      title.textContent =
+        "現在、重要な連絡はありません。";
+
+    }
+
+    if(text){
+
+      text.textContent =
+        "新しい連絡が追加されるとここに表示されます。";
+
+    }
+
+    return;
+
+  }
+
+
+  // =====================================
+  // 一番上の連絡を表示
+  // =====================================
+
+  const latestNotice = notices[0];
+
+  if(title){
+
+    title.textContent =
+      latestNotice.title;
+
+  }
+
+  if(text){
+
+    text.textContent =
+      latestNotice.body;
+
+  }
+
+}
+
+// 実行
+
+loadImportantNotice();

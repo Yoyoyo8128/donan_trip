@@ -154,6 +154,44 @@
 
     </section>
 
+    <!-- Day 4 -->
+
+    <section class="settings-card glass">
+
+        <div class="settings-title">
+        4日目コース
+        </div>
+
+        <div class="settings-subtitle">
+            小樽 / 室蘭 を選択
+        </div>
+
+        <div class="course-grid two-column">
+
+        <button
+            class="course-button"
+            onclick="selectDay4('小樽', this)"
+        >
+        小樽
+        <span>
+        小樽散策
+        </span>
+    </button>
+
+    <button
+      class="course-button"
+      onclick="selectDay4('室蘭', this)"
+    >
+      室蘭
+      <span>
+        地球岬
+      </span>
+    </button>
+
+  </div>
+
+    </section>
+
     <!-- Save -->
 
     <button
@@ -235,6 +273,9 @@
     let selectedDay3 =
       localStorage.getItem("courseDay3") || "α";
 
+    let selectedDay4 =
+      localStorage.getItem("courseDay4") || "小樽";
+
 
     // =====================================
     // Day2選択
@@ -277,6 +318,26 @@
 
     }
 
+    // =====================================
+    // Day4選択
+    // =====================================
+
+    function selectDay4(course, button){
+
+        selectedDay4 = course;
+
+        document
+        .querySelectorAll(".settings-card:nth-child(3) .course-button")
+        .forEach(btn => {
+
+      btn.classList.remove("active");
+
+        });
+
+        button.classList.add("active");
+
+    }
+
 
     // =====================================
     // 保存
@@ -293,6 +354,11 @@
         "courseDay3",
         selectedDay3
       );
+
+      localStorage.setItem(
+        "courseDay4",
+        selectedDay4
+        );
 
       // 保存メッセージ
 
@@ -348,9 +414,26 @@
 
         });
 
+        // Day4
+
+      document
+        .querySelectorAll(".settings-card:nth-child(3) .course-button")
+        .forEach(btn => {
+
+        if(
+            btn.textContent.includes(selectedDay4)
+        ){
+
+        btn.classList.add("active");
+
+        }
+
+        });
+
     };
 
   </script>
 
 </body>
 </html>
+
