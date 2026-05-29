@@ -27,17 +27,17 @@ body{
   overflow-x:hidden;
 
   background:
-
-  linear-gradient(
-    rgba(15,23,42,0.3),
-    rgba(30,58,138,0.82)
-  ),
-
-  url("images/hakodate.jpg");
+    linear-gradient(
+      rgba(15,23,42,0.45),
+      rgba(30,58,138,0.82)
+    ),
+    url("images/hakodate.jpg");
 
   background-size:cover;
 
-  background-position:center;
+  background-position:center center;
+
+  background-repeat:no-repeat;
 
   background-attachment:fixed;
 }
@@ -1455,6 +1455,32 @@ body{
 
     font-size: 22px;
 
+  }
+
+}
+
+/* =========================
+   MOBILE BACKGROUND FIX
+========================= */
+
+@media(max-width:768px){
+
+  body{
+
+    background:
+      linear-gradient(
+        rgba(15,23,42,0.55),
+        rgba(30,58,138,0.88)
+      ),
+      url("images/hakodate-mobile.jpg");
+
+    background-size:cover;
+
+    background-position:center center;
+
+    background-repeat:no-repeat;
+
+    background-attachment:scroll;
   }
 
 }
