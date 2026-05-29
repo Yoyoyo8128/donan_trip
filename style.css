@@ -1460,16 +1460,29 @@ body{
 }
 
 /* =========================
-   MOBILE BACKGROUND FIX
+   MOBILE FIXED BACKGROUND
 ========================= */
 
 @media(max-width:768px){
 
   body{
 
+    background:none;
+  }
+
+  body::before{
+
+    content:"";
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:-10;
+
     background:
       linear-gradient(
-        rgba(15,23,42,0.30),
+        rgba(15,23,42,0.55),
         rgba(30,58,138,0.88)
       ),
       url("images/hakodate-mobile.jpg");
@@ -1480,7 +1493,9 @@ body{
 
     background-repeat:no-repeat;
 
-    background-attachment:scroll;
+    transform:translateZ(0);
+
+    will-change:transform;
   }
 
 }
