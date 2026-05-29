@@ -13,6 +13,10 @@ html{
   scroll-behavior:smooth;
 }
 
+/* =========================
+   BODY
+========================= */
+
 body{
 
   font-family:
@@ -29,16 +33,19 @@ body{
   background:
 
   linear-gradient(
-    rgba(15,23,42,0.3),
-    rgba(30,58,138,0.82)
+    rgba(15,23,42,0.58),
+    rgba(30,58,138,0.68)
   ),
 
   url("images/hakodate.jpg");
 
   background-size:cover;
 
-  background-position:center;
+  background-position:center center;
 
+  background-repeat:no-repeat;
+
+  /* PCでは固定 */
   background-attachment:fixed;
 }
 
@@ -1454,6 +1461,59 @@ body{
   .hero-image-title{
 
     font-size: 22px;
+
+  }
+
+}
+
+/* =========================
+   SMARTPHONE BACKGROUND
+========================= */
+
+@media(max-width:768px){
+
+  body{
+
+    background:
+
+    linear-gradient(
+      rgba(15,23,42,0.58),
+      rgba(30,58,138,0.68)
+    ),
+
+    url("images/hakodate.jpg");
+
+    /* 画像を90度回転 */
+    background-size:cover;
+
+    background-position:center;
+
+    /* fixedはスマホで重いので解除 やっぱしない*/
+    background-attachment:fixed;
+
+  }
+
+  body::before{
+
+    content:"";
+
+    position:fixed;
+
+    inset:0;
+
+    background-image:url("images/hakodate.jpg");
+
+    background-size:cover;
+
+    background-position:center;
+
+    background-repeat:no-repeat;
+
+    transform:rotate(-90deg) scale(1.8);
+
+    transform-origin:center;
+
+    z-index:-10;
 
   }
 
