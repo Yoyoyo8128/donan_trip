@@ -199,7 +199,7 @@ function getTodaySchedules(){
   // 2日目
   // =====================================
 
-  if((month === 6 && date === 2)||(month===5 && date===29)){
+  if((month === 6 && date === 2)){
 
     return [
 
@@ -259,7 +259,7 @@ function getTodaySchedules(){
   // それ以外
   // =====================================
 
-  return;
+  return[];
 
 }
 
