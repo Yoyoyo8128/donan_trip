@@ -1,44 +1,63 @@
 // ===============================
 // 道南コース Web App
-// main.js
+// script.js
 // ===============================
 
 
-// ===============================
+
+// =====================================
 // 現在時刻表示
-// ===============================
+// =====================================
 
-function updateClock() {
+function updateClock(){
 
   const now = new Date();
 
-  const year = now.getFullYear();
+  const year =
+    now.getFullYear();
 
-  const month = String(now.getMonth() + 1).padStart(2, '0');
+  const month =
+    String(now.getMonth() + 1)
+    .padStart(2,"0");
 
-  const day = String(now.getDate()).padStart(2, '0');
+  const day =
+    String(now.getDate())
+    .padStart(2,"0");
 
-  const hours = String(now.getHours()).padStart(2, '0');
+  const hours =
+    String(now.getHours())
+    .padStart(2,"0");
 
-  const minutes = String(now.getMinutes()).padStart(2, '0');
+  const minutes =
+    String(now.getMinutes())
+    .padStart(2,"0");
 
-  const seconds = String(now.getSeconds()).padStart(2, '0');
+  const seconds =
+    String(now.getSeconds())
+    .padStart(2,"0");
+
 
 
   // 日付
-  const dateElement = document.getElementById("date");
 
-  if (dateElement) {
+  const dateElement =
+    document.getElementById("date");
+
+  if(dateElement){
 
     dateElement.textContent =
       `${year} / ${month} / ${day}`;
 
   }
 
-  // 時間
-  const clockElement = document.getElementById("clock");
 
-  if (clockElement) {
+
+  // 時間
+
+  const clockElement =
+    document.getElementById("clock");
+
+  if(clockElement){
 
     clockElement.textContent =
       `${hours}:${minutes}:${seconds}`;
@@ -47,251 +66,246 @@ function updateClock() {
 
 }
 
-setInterval(updateClock, 1000);
+setInterval(updateClock,1000);
 
 updateClock();
 
 
-// ===============================
-// コース情報
-// ===============================
 
-let selectedCourseDay2 =
-  localStorage.getItem("courseDay2") || "A";
+// =====================================
+// コース取得
+// =====================================
 
-let selectedCourseDay3 =
-  localStorage.getItem("courseDay3") || "α";
+const courseDay2 =
+  localStorage.getItem("courseDay2")
+  || "A";
 
-let selectedCourseDay4 =
-  localStorage.getItem("courseDay4") || "小樽";
+const courseDay3 =
+  localStorage.getItem("courseDay3")
+  || "α";
+
+const courseDay4 =
+  localStorage.getItem("courseDay4")
+  || "小樽";
 
 
-// ===============================
-// コース表示更新
-// ===============================
 
-function updateCourseDisplay() {
+// =====================================
+// コース表示
+// =====================================
 
-  const course2Element =
+function updateCourseDisplay(){
+
+  const day2Element =
     document.getElementById("course-day2");
 
-  const course3Element =
+  const day3Element =
     document.getElementById("course-day3");
 
-  const course4Element =
+  const day4Element =
     document.getElementById("course-day4");
 
 
+
   const courseNamesDay2 = {
-    A: "A（カヌー）",
-    B: "B（中島遊覧）",
-    C: "C（ウポポイ）"
+
+    A:"A（カヌー）",
+    B:"B（中島遊覧）",
+    C:"C（ウポポイ）"
+
   };
+
+
 
   const courseNamesDay3 = {
-    α: "α（火口散策）",
-    β: "β（登山）",
-    γ: "γ（三松正夫記念館）"
+
+    α:"α（火口散策）",
+    β:"β（登山）",
+    γ:"γ（三松正夫記念館）"
+
   };
+
+
+
   const courseNamesDay4 = {
 
-    小樽: "小樽",
-    室蘭: "室蘭"
+    小樽:"小樽",
+    室蘭:"室蘭"
 
   };
 
-  
 
 
-  if (course2Element) {
+  if(day2Element){
 
-    course2Element.textContent =
-      `2日目：${courseNamesDay2[selectedCourseDay2]}`;
-
-  }
-
-  if (course3Element) {
-
-    course3Element.textContent =
-      `3日目：${courseNamesDay3[selectedCourseDay3]}`;
+    day2Element.textContent =
+      `2日目：${courseNamesDay2[courseDay2]}`;
 
   }
 
-  if (course4Element) {
 
-  course4Element.textContent =
-    `4日目：${courseNamesDay4[selectedCourseDay4]}`;
 
-}
+  if(day3Element){
+
+    day3Element.textContent =
+      `3日目：${courseNamesDay3[courseDay3]}`;
+
+  }
+
+
+
+  if(day4Element){
+
+    day4Element.textContent =
+      `4日目：${courseNamesDay4[courseDay4]}`;
+
+  }
 
 }
 
 updateCourseDisplay();
 
 
-// ===============================
-// コース変更
-// ===============================
 
-function changeCourse() {
+// =====================================
+// 今日の工程取得
+// =====================================
 
-  const newCourse2 = prompt(
-    "2日目のコースを入力してください（A / B / C）"
-  );
+function getTodaySchedules(){
 
-  if (
-    newCourse2 === "A" ||
-    newCourse2 === "B" ||
-    newCourse2 === "C"
-  ) {
+  const now = new Date();
 
-    selectedCourseDay2 = newCourse2;
+  const month =
+    now.getMonth() + 1;
 
-    localStorage.setItem(
-      "courseDay2",
-      newCourse2
-    );
+  const date =
+    now.getDate();
+
+
+
+  // =====================================
+  // 1日目
+  // =====================================
+
+  if((month === 6 && date === 1)){
+
+    return schedules.day1;
+
+  }
+
+
+
+  // =====================================
+  // 2日目
+  // =====================================
+
+  if((month === 6 && date === 2)||(month===5 && date===29)){
+
+    return [
+
+      ...schedules.day2_mae,
+
+      ...schedules.day2[courseDay2],
+
+      ...schedules.day2_ato
+
+    ];
 
   }
 
 
-  const newCourse3 = prompt(
-    "3日目のコースを入力してください（α / β / γ）"
-  );
 
-  if (
-    newCourse3 === "α" ||
-    newCourse3 === "β" ||
-    newCourse3 === "γ"
-  ) {
+  // =====================================
+  // 3日目
+  // =====================================
 
-    selectedCourseDay3 = newCourse3;
+  if(month === 6 && date === 3){
 
-    localStorage.setItem(
-      "courseDay3",
-      newCourse3
-    );
+    return [
+
+      ...schedules.day3_mae,
+
+      ...schedules.day3[courseDay3],
+
+      ...schedules.day3_ato
+
+    ];
 
   }
 
-  updateCourseDisplay();
+
+
+  // =====================================
+  // 4日目
+  // =====================================
+
+  if(month === 6 && date === 4){
+
+    return [
+
+      ...schedules.day4_mae,
+
+      ...schedules.day4[courseDay4],
+
+      ...schedules.day4_ato
+
+    ];
+
+  }
+
+
+
+  // =====================================
+  // それ以外
+  // =====================================
+
+  return;
 
 }
 
 
-// ===============================
-// 行程データ
-// ===============================
 
-const schedules = {
+// =====================================
+// NEXT SCHEDULE
+// =====================================
 
-  common: [
-
-    {
-      time: "07:00",
-      title: "起床"
-    },
-
-    {
-      time: "08:30",
-      title: "ホテル出発"
-    }
-
-  ],
-
-  A: [
-
-    {
-      time: "09:30",
-      title: "鹿部間欠泉"
-    },
-
-    {
-      time: "13:30",
-      title: "カヌー体験"
-    },
-
-    {
-      time: "18:00",
-      title: "ホテル到着"
-    }
-
-  ],
-
-  B: [
-
-    {
-      time: "09:30",
-      title: "鹿部間欠泉"
-    },
-
-    {
-      time: "15:30",
-      title: "中島ハイキング"
-    },
-
-    {
-      time: "18:00",
-      title: "ホテル到着"
-    }
-
-  ],
-
-  C: [
-
-    {
-      time: "10:30",
-      title: "遊覧船"
-    },
-
-    {
-      time: "15:15",
-      title: "ウポポイ学習"
-    },
-
-    {
-      time: "18:30",
-      title: "ホテル到着"
-    }
-
-  ]
-
-};
-
-
-// ===============================
-// 次の予定表示
-// ===============================
-
-function updateNextSchedule() {
+function updateNextSchedule(){
 
   const now = new Date();
 
   const currentMinutes =
-    now.getHours() * 60 + now.getMinutes();
+
+    now.getHours() * 60
+    + now.getMinutes();
 
 
-  const allSchedules = [
 
-    ...schedules.common,
-    ...schedules[selectedCourseDay2]
+  const todaySchedules =
+    getTodaySchedules();
 
-  ];
 
 
   let nextSchedule = null;
 
 
-  for (const schedule of allSchedules) {
 
-    const [hours, minutes] =
-      schedule.time.split(":").map(Number);
+  for(const schedule of todaySchedules){
+
+    const [hour,minute] =
+
+      schedule[0]
+      .split(":")
+      .map(Number);
+
+
 
     const scheduleMinutes =
-      hours * 60 + minutes;
+
+      hour * 60 + minute;
 
 
-    if (scheduleMinutes >= currentMinutes) {
+
+    if(scheduleMinutes >= currentMinutes){
 
       nextSchedule = schedule;
 
@@ -302,107 +316,198 @@ function updateNextSchedule() {
   }
 
 
-  // 全て終了
-  if (!nextSchedule) {
 
-    document.getElementById(
-      "next-time"
-    ).textContent = "--:--";
+  // =====================================
+  // 全予定終了
+  // =====================================
 
-    document.getElementById(
-      "next-title"
-    ).textContent = "本日の予定は終了しました";
+  if(!nextSchedule){
 
-    document.getElementById(
-      "countdown"
-    ).textContent = "";
+    const nextTime =
+      document.getElementById("next-time");
+
+    const nextTitle =
+      document.getElementById("next-title");
+
+    const nextSub =
+      document.getElementById("next-sub");
+
+    const countdown =
+      document.getElementById("countdown");
+
+
+
+    if(nextTime){
+
+      nextTime.textContent =
+        "--:--";
+
+    }
+
+    if(nextTitle){
+
+      nextTitle.textContent =
+        "本日の予定は終了しました";
+
+    }
+
+    if(nextSub){
+
+      nextSub.textContent =
+        "";
+
+    }
+
+    if(countdown){
+
+      countdown.textContent =
+        "";
+
+    }
 
     return;
 
   }
 
 
-  // 次の予定表示
-  document.getElementById(
-    "next-time"
-  ).textContent = nextSchedule.time;
 
-  document.getElementById(
-    "next-title"
-  ).textContent = nextSchedule.title;
+  // =====================================
+  // 表示
+  // =====================================
+
+  const nextTime =
+    document.getElementById("next-time");
+
+  const nextTitle =
+    document.getElementById("next-title");
+
+  const nextSub =
+    document.getElementById("next-sub");
+
+  const countdown =
+    document.getElementById("countdown");
 
 
+
+  if(nextTime){
+
+    nextTime.textContent =
+      nextSchedule[0];
+
+  }
+
+
+
+  if(nextTitle){
+
+    nextTitle.textContent =
+      nextSchedule[1];
+
+  }
+
+
+
+  if(nextSub){
+
+    nextSub.textContent =
+      nextSchedule[2];
+
+  }
+
+
+
+  // =====================================
   // カウントダウン
-  const [nextHours, nextMinutes] =
-    nextSchedule.time.split(":").map(Number);
+  // =====================================
 
-  const nextTotalMinutes =
-    nextHours * 60 + nextMinutes;
+  const [nextHour,nextMinute] =
+
+    nextSchedule[0]
+    .split(":")
+    .map(Number);
+
+
 
   const remainMinutes =
-    nextTotalMinutes - currentMinutes;
+
+    (nextHour * 60 + nextMinute)
+    - currentMinutes;
 
 
-  document.getElementById(
-    "countdown"
-  ).textContent =
-    `あと ${remainMinutes} 分`;
+
+  if(countdown){
+    const remainHours =
+    Math.floor(remainMinutes / 60);
+
+    const remainMins =
+    remainMinutes % 60;
+
+    countdown.textContent =
+      `あと ${remainHours} 時間 ${remainMins} 分`;
+
+  }
 
 }
 
-setInterval(updateNextSchedule, 1000);
+setInterval(updateNextSchedule,1000);
 
 updateNextSchedule();
 
 
-// ===============================
-// タイムライン生成
-// ===============================
 
-function renderTimeline() {
+// =====================================
+// 今日のタイムライン
+// =====================================
+
+function renderTimeline(){
 
   const timeline =
     document.getElementById("timeline");
 
-  if (!timeline) return;
+  if(!timeline){
+
+    return;
+
+  }
+
+
 
   timeline.innerHTML = "";
 
 
-  const allSchedules = [
 
-    ...schedules.common,
-    ...schedules[selectedCourseDay2]
-
-  ];
+  const todaySchedules =
+    getTodaySchedules();
 
 
-  allSchedules.forEach(schedule => {
 
-    const item = document.createElement("div");
+  todaySchedules.forEach(schedule => {
 
-    item.className = "timeline-item";
+    timeline.innerHTML += `
 
+      <div class="timeline-item">
 
-    item.innerHTML = `
+        <div class="dot"></div>
 
-      <div class="dot"></div>
+        <div class="timeline-content">
 
-      <div class="timeline-content">
+          <div class="timeline-time">
+            ${schedule[0]}
+          </div>
 
-        <div class="timeline-time">
-          ${schedule.time}
-        </div>
+          <div class="timeline-title">
+            ${schedule[1]}
+          </div>
 
-        <div class="timeline-title">
-          ${schedule.title}
+          <div class="timeline-desc">
+            ${schedule[2]}
+          </div>
+
         </div>
 
       </div>
 
     `;
-
-    timeline.appendChild(item);
 
   });
 
@@ -411,127 +516,20 @@ function renderTimeline() {
 renderTimeline();
 
 
-// ===============================
-// 緊急連絡データ
-// ===============================
 
-const notices = [
-
-  {
-    title: "集合時間変更",
-    body:
-      "17:00集合 → 17:15集合に変更になりました。"
-  },
-
-  {
-    title: "花火について",
-    body:
-      "20:15より洞爺湖花火が始まります。"
-  }
-
-];
-
-
-// ===============================
-// 緊急連絡表示
-// ===============================
-
-function renderNotice() {
-
-  const noticeTitle =
-    document.getElementById("notice-title");
-
-  const noticeText =
-    document.getElementById("notice-text");
-
-
-  if (!noticeTitle || !noticeText) return;
-
-
-  noticeTitle.textContent =
-    notices[0].title;
-
-  noticeText.textContent =
-    notices[0].body;
-
-}
-
-renderNotice();
-
-
-// ===============================
-// ページ読み込み演出
-// ===============================
-
-window.addEventListener("load", () => {
-
-  document.body.classList.add("loaded");
-
-});
-
-
-// ===============================
-// デバッグ
-// ===============================
-
-console.log("道南コース Web App 起動"); 
-
-// =====================================
-// コース設定読み込み
-// =====================================
-
-function loadCourseSettings(){
-
-  const day2 =
-    localStorage.getItem("courseDay2") || "A";
-
-  const day3 =
-    localStorage.getItem("courseDay3") || "α";
-
-
-  // 表示更新
-
-  const day2Element =
-    document.getElementById("course-day2");
-
-  const day3Element =
-    document.getElementById("course-day3");
-
-
-  if(day2Element){
-
-    day2Element.textContent =
-      `2日目：${day2}`;
-
-  }
-
-  if(day3Element){
-
-    day3Element.textContent =
-      `3日目：${day3}`;
-
-  }
-
-}
-
-loadCourseSettings();
-
-// =====================================
-// IMPORTANT同期
-// =====================================
 // =====================================
 // IMPORTANT同期
 // =====================================
 
 function loadImportantNotice(){
 
-  // notice.html のデータ取得
-
   const notices = JSON.parse(
+
     localStorage.getItem("notices")
+
   ) || [];
 
-  // HTML取得
+
 
   const title =
     document.getElementById("notice-title");
@@ -540,53 +538,63 @@ function loadImportantNotice(){
     document.getElementById("notice-text");
 
 
-  // =====================================
-  // 連絡が0件の場合
-  // =====================================
 
-  if(notices.length === 0){
-
-    if(title){
-
-      title.textContent =
-        "現在、重要な連絡はありません。";
-
-    }
-
-    if(text){
-
-      text.textContent =
-        "新しい連絡が追加されるとここに表示されます。";
-
-    }
+  if(!title || !text){
 
     return;
 
   }
 
 
+
   // =====================================
-  // 一番上の連絡を表示
+  // 連絡なし
   // =====================================
 
-  const latestNotice = notices[0];
-
-  if(title){
+  if(notices.length === 0){
 
     title.textContent =
-      latestNotice.title;
-
-  }
-
-  if(text){
+      "現在、重要な連絡はありません。";
 
     text.textContent =
-      latestNotice.body;
+      "新しい連絡が追加されるとここに表示されます。";
+
+    return;
 
   }
+
+
+
+  // =====================================
+  // 最新連絡
+  // =====================================
+
+  title.textContent =
+    notices[0].title;
+
+  text.textContent =
+    notices[0].body;
 
 }
 
-// 実行
-
 loadImportantNotice();
+
+
+
+// =====================================
+// ページ読み込み
+// =====================================
+
+window.addEventListener("load",() => {
+
+  document.body.classList.add("loaded");
+
+});
+
+
+
+// =====================================
+// デバッグ
+// =====================================
+
+console.log("道南コース Web App 起動");
