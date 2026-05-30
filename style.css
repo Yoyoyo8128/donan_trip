@@ -1499,3 +1499,84 @@ body{
   }
 
 }
+
+/* パスワード画面 */
+
+#password-screen{
+
+  position:fixed;
+  inset:0;
+
+  background:#0f172a;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  z-index:99999;
+}
+
+.password-box{
+
+  width:90%;
+  max-width:400px;
+
+  padding:30px;
+
+  border-radius:24px;
+
+  text-align:center;
+
+  background:rgba(255,255,255,0.08);
+
+  backdrop-filter:blur(20px);
+}
+
+.password-box h1{
+
+  margin-bottom:10px;
+}
+
+.password-box p{
+
+  margin-bottom:20px;
+}
+
+#password-input{
+
+  width:100%;
+
+  padding:14px;
+
+  border:none;
+
+  border-radius:12px;
+
+  margin-bottom:15px;
+}
+
+#login-btn{
+
+  width:100%;
+
+  padding:14px;
+
+  border:none;
+
+  border-radius:12px;
+
+  background:#2563eb;
+
+  color:white;
+
+  font-weight:700;
+
+  cursor:pointer;
+}
+
+#password-error{
+
+  margin-top:10px;
+
+  color:#f87171;
+}

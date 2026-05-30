@@ -598,3 +598,45 @@ window.addEventListener("load",() => {
 // =====================================
 
 console.log("道南コース Web App 起動");
+
+/* =====================
+   PASSWORD
+===================== */
+
+const PASSWORD = "hkdt";
+
+const passwordScreen =
+document.getElementById("password-screen");
+
+const passwordInput =
+document.getElementById("password-input");
+
+const loginBtn =
+document.getElementById("login-btn");
+
+const passwordError =
+document.getElementById("password-error");
+
+if(localStorage.getItem("loggedIn") === "true"){
+  passwordScreen.style.display = "none";
+}
+
+loginBtn?.addEventListener("click", () => {
+
+  if(passwordInput.value === PASSWORD){
+
+    localStorage.setItem(
+      "loggedIn",
+      "true"
+    );
+
+    passwordScreen.style.display = "none";
+
+  }else{
+
+    passwordError.textContent =
+    "パスワードが違います";
+
+  }
+
+});
